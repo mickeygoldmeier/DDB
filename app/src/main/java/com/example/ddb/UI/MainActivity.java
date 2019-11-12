@@ -1,8 +1,10 @@
-package com.example.ddb;
+package com.example.ddb.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.ddb.R;
 
 public class MainActivity extends AppCompatActivity {
 
