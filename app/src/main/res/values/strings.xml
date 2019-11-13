@@ -9,4 +9,6 @@
     <string name="phone_or_id">Phone or ID</string>
     <string name="login">Log in</string>
     <string name="sign_in">New around? Sign up!</string>
+    <string name="enter_password">Password</string>
+    <string name="phone_number_error">Oops... You have an error in the data you entered</string>
 </resources>

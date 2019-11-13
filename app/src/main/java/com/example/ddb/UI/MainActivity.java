@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,7 +13,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.ddb.Data.Users;
+import com.example.ddb.Entities.User;
 import com.example.ddb.R;
 
 import java.util.Calendar;
@@ -46,26 +50,36 @@ public class MainActivity extends AppCompatActivity {
             welcomeTV.setText(R.string.good_night);
         else if (hour >= 5 && hour < 13)
             welcomeTV.setText(R.string.good_morning);
-        else if (hour >= 13 && hour < 20)
+        else if (hour >= 13 && hour < 17)
             welcomeTV.setText(R.string.good_afternoon);
         else
             welcomeTV.setText(R.string.good_evning);
 
 
         final EditText id_ed = findViewById(R.id.id_et);
+        final TextView message_tv = findViewById(R.id.message_tv);
         Button signin_btn = findViewById(R.id.signin_btn);
+
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                id_ed.setText(normalizePhoneNumber(id_ed.getText().toString()));
+                try {
+                    User user = Users.getUser(normalizePhoneNumber(id_ed.getText().toString()));
+                    Intent i = new Intent(getApplicationContext(), CompanyMainScreen.class);
+                    i.putExtra("userID", user.getUserID());
+                    startActivity(i);
+
+                } catch (Exception e) {
+                    message_tv.setText(R.string.phone_number_error);
+                    message_tv.setTextColor(Color.RED);
+                }
             }
         });
     }
 
-    private String normalizePhoneNumber(String number)
-    {
+    private String normalizePhoneNumber(String number) {
         if (number.startsWith("05"))
-            number = number.replace("05", "+9725");
+            number = number.replaceFirst("05", "+9725");
         return number;
     }
 }
