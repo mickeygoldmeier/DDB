@@ -34,19 +34,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             getActionBar().hide();
         }
-        try {
-            this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            this.getWindow().setStatusBarColor(Color.TRANSPARENT);
-        } catch (Exception e) {
-            this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
 
         // set the welcome title
         TextView welcomeTV = findViewById(R.id.welcome_tv);
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (hour > 0 && hour < 5)
+        if (hour >= 0 && hour < 5)
             welcomeTV.setText(R.string.good_night);
         else if (hour >= 5 && hour < 13)
             welcomeTV.setText(R.string.good_morning);

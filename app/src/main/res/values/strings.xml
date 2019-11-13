@@ -5,10 +5,10 @@
     <string name="good_afternoon">Good afternoon!</string>
     <string name="good_night">Good night!</string>
     <string name="good_evning">Good evning!</string>
-    <string name="enter_id_exp">Enter your phone number or your company ID to log in</string>
+    <string name="enter_id_exp">Can we have your number?</string>
     <string name="phone_or_id">Phone or ID</string>
     <string name="login">Log in</string>
-    <string name="sign_in">New around? Sign up!</string>
+    <string name="sign_in">Come here often? lets open an account!</string>
     <string name="enter_password">Password</string>
-    <string name="phone_number_error">Oops... You have an error in the data you entered</string>
+    <string name="phone_number_error">Should we try a real account?</string>
 </resources>

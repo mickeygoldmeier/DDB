@@ -5,10 +5,10 @@
     <string name="good_afternoon">צהריים טובים!</string>
     <string name="good_night">לילה טוב!</string>
     <string name="good_evning">ערב טוב!</string>
-    <string name="enter_id_exp">הכנס את מספר הטלפון שלך או את מזהה הID של החברה שלך כדי להתחבר</string>
+    <string name="enter_id_exp">אפשר את המספר שלך?</string>
     <string name="phone_or_id">מספר טלפון או ID</string>
     <string name="login">התחבר</string>
-    <string name="sign_in">חדש בסביבה? הירשם כאן!</string>
+    <string name="sign_in">מגיע לפה הרבה? בוא נפתח חשבון!</string>
     <string name="enter_password">סיסמה</string>
-    <string name="phone_number_error">אופס... יש לך טעות במידע שהכנסת</string>
+    <string name="phone_number_error">שננסה חשבון שכן קיים?</string>
 </resources>
