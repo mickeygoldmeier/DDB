@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:gravity="bottom"
     tools:context=".UI.MainActivity"
-    android:background="#A2D4FF">
+    android:fitsSystemWindows="false"
+    android:background="#009688">
 
     <TextView
         android:id="@+id/welcome_tv"
@@ -15,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center|top"
         android:text="@string/good_morning"
+        android:layout_marginBottom="100dp"
         android:textSize="50sp"/>
 
     <LinearLayout
@@ -30,17 +32,57 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/good_morning" />
+            android:text="@string/enter_id_exp"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/id_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/phone_or_id"
+            android:background="@drawable/edit_text_style"
+            android:padding="10dp"
+            android:gravity="center"
+            android:textDirection="ltr"
+            android:layout_margin="7dp"/>
+
+        <EditText
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/phone_or_id"
+            android:background="@drawable/edit_text_style"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_margin="7dp"/>
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/signin_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/button_style_regular"
             android:padding="15dp"
-            android:text="123"
-            android:textColor="#ffffff" />
+            android:text="@string/login"
+            android:textColor="#ffffff"
+            android:drawableRight="@drawable/enter_icon" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in"
+            android:drawableRight="@drawable/signup_icon"
+            android:linksClickable="true"
+            android:selectAllOnFocus="false"
+            android:textColor="#A3A3A3"
+            android:layout_marginTop="20dp"
+            android:autoLink="all"/>
+
     </LinearLayout>
 
 
