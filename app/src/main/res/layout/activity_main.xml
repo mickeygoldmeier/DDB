@@ -4,17 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    tools:context=".UI.MainActivity">
+    android:orientation="vertical"
+    android:gravity="bottom"
+    tools:context=".UI.MainActivity"
+    android:background="#A2D4FF">
 
-    <Button
-        android:layout_margin="10dp"
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/welcome_tv"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:textColor="#ffffff"
-        android:background="@drawable/button_style"
-        android:text="hello world" />
+        android:layout_width="wrap_content"
+        android:layout_gravity="center|top"
+        android:text="@string/good_morning"
+        android:textSize="50sp"/>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:padding="25dp"
+        android:orientation="vertical"
+        android:background="@drawable/half_circle">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/good_morning" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_style_regular"
+            android:padding="15dp"
+            android:text="123"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
 
 </LinearLayout>
