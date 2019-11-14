@@ -11,4 +11,8 @@
     <string name="sign_in">מגיע לפה הרבה? בוא נפתח חשבון!</string>
     <string name="enter_password">סיסמה</string>
     <string name="phone_number_error">שננסה חשבון שכן קיים?</string>
+    <string name="blessing_1">כיף שחזרתם,</string>
+    <string name="blessing_2">טוב לראות אותכם,</string>
+    <string name="blessing_3">שלום לכם,</string>
+    <string name="log_out">כבר הולכים?</string>
 </resources>

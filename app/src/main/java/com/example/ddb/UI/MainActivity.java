@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     User user = Users.getUser(normalizePhoneNumber(id_ed.getText().toString()));
                     Intent i = new Intent(getApplicationContext(), CompanyMainScreen.class);
                     i.putExtra("userID", user.getUserID());
+                    finish();
                     startActivity(i);
 
                 } catch (Exception e) {

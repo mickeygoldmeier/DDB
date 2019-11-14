@@ -11,4 +11,8 @@
     <string name="sign_in">Come here often? lets open an account!</string>
     <string name="enter_password">Password</string>
     <string name="phone_number_error">Should we try a real account?</string>
+    <string name="blessing_1">Glad you back,</string>
+    <string name="blessing_2">Good to see you,</string>
+    <string name="blessing_3">Hello there,</string>
+    <string name="log_out">Allready going?</string>
 </resources>
