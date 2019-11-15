@@ -15,7 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ddb.Data.Action;
+import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Data.Users;
+import com.example.ddb.Entities.Address;
+import com.example.ddb.Entities.Parcel;
+import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
 
@@ -27,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // hide the Action Bar and the Status bar
         try {
             getSupportActionBar().hide();
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     User user = Users.getUser(normalizePhoneNumber(id_ed.getText().toString()));
+
                     Intent i = new Intent(getApplicationContext(), CompanyMainScreen.class);
                     i.putExtra("userID", user.getUserID());
                     finish();
@@ -77,4 +82,6 @@ public class MainActivity extends AppCompatActivity {
             number = number.replaceFirst("05", "+9725");
         return number;
     }
+
+
 }

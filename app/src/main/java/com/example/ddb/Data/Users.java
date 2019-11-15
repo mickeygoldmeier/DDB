@@ -5,6 +5,8 @@ import java.util.Calendar;
 import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Company;
+import com.example.ddb.Entities.Parcel;
+import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.Entities.User;
 
 import java.util.Date;
@@ -12,6 +14,7 @@ import java.util.LinkedList;
 
 public class Users {
     private static LinkedList<User> UsersList = new LinkedList<>();
+    private RegisteredPackagesDS registeredPackagesDS;
 
     public static User getUser(String id) throws Exception {
         UsersList.add(new Company("123", "123", Calendar.getInstance(), new Address(), "my company 1"));
@@ -23,5 +26,4 @@ public class Users {
                 return user;
         throw new Exception();
     }
-
 }

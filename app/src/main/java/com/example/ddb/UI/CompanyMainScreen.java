@@ -12,8 +12,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ddb.Data.Action;
+import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Data.Users;
+import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Company;
+import com.example.ddb.Entities.Parcel;
+import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
 
@@ -52,7 +57,6 @@ public class CompanyMainScreen extends AppCompatActivity {
         int[] blessings = {R.string.blessing_1, R.string.blessing_2, R.string.blessing_3};
         TextView hello_tv = findViewById(R.id.hello_tv);
         hello_tv.setText(blessings[new Random().nextInt((blessings.length))]);
-
         // log out button
         Button log_out_btn = findViewById(R.id.log_out_btn);
         log_out_btn.setOnClickListener(new View.OnClickListener() {
@@ -74,4 +78,5 @@ public class CompanyMainScreen extends AppCompatActivity {
             }
         });
     }
+
 }

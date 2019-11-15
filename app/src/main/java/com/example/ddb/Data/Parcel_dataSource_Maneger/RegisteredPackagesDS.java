@@ -3,7 +3,9 @@ package com.example.ddb.Data.Parcel_dataSource_Maneger;
 import androidx.annotation.NonNull;
 
 import com.example.ddb.Data.Action;
+import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Parcel;
+import com.example.ddb.Entities.Parcel_Type;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -30,9 +32,8 @@ public class RegisteredPackagesDS {
 
     public static void addParcel(final Parcel parcel, final Action<String> action) {
         String phone = parcel.getRecipientPhone();
-        parcelsRef.child(phone);
         String key = parcel.getParcelID();
-        parcelsRef.child(key).setValue(parcel).addOnSuccessListener(new OnSuccessListener<Void>() {
+        parcelsRef.child(phone + "/" +key).setValue(parcel).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 action.onSuccess(parcel.getParcelID());
@@ -46,6 +47,7 @@ public class RegisteredPackagesDS {
 
             }
         });
+        parcelsRef.getParent();
     }
 
 
@@ -102,7 +104,27 @@ public class RegisteredPackagesDS {
         });
     }
 
-    private static ChildEventListener studentRefChildEventListener;
+    public void add(){
+        Parcel parcel = new Parcel( Parcel_Type.Envelope,true,21.4,new Address("ass","ass","ass",4),"+97254345466","123456");
+
+        RegisteredPackagesDS.addParcel(parcel,new Action<String>(){
+            @Override
+            public void onSuccess(String obj) {
+                System.out.println( "insert id " + obj);
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                System.out.println( "Error \n" + exception.getMessage());
+            }
+            @Override
+            public void onProgress(String status, double percent) {
+                System.out.println( "Error \n" + percent);
+            }
+        });
+    }
+
+    /* private static ChildEventListener studentRefChildEventListener; */
 
    /* public static void notifyToStudentList(final NotifyDataChange<List<Student>> notifyDataChange) {
         if (notifyDataChange != null) {
