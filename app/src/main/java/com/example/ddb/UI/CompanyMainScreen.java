@@ -49,7 +49,7 @@ public class CompanyMainScreen extends AppCompatActivity {
         }
 
         // set the blessing text
-        int[] blessings = {android.R.string.untitled, R.string.app_name, R.string.good_afternoon};
+        int[] blessings = {R.string.blessing_1, R.string.blessing_2, R.string.blessing_3};
         TextView hello_tv = findViewById(R.id.hello_tv);
         hello_tv.setText(blessings[new Random().nextInt((blessings.length))]);
 
