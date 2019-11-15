@@ -17,11 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisteredPackagesDS {
-
-
     static DatabaseReference parcelsRef;
     static List<Parcel> parcelList;
-
     static {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -52,7 +49,7 @@ public class RegisteredPackagesDS {
     }
 
 
-    public static void removeStudent(String parcelid, final Action<String> action) {
+    public static void removeParcel(String parcelid, final Action<String> action) {
 
         final String key = parcelid;
 
@@ -84,10 +81,10 @@ public class RegisteredPackagesDS {
         });
     }
 
-    public static void updateStudent(final Parcel toUpdate, final Action<String> action) {
+    public static void updateParcel(final Parcel toUpdate, final Action<String> action) {
         final String key =  toUpdate.getParcelID();
 
-        removeStudent(toUpdate.getParcelID(), new Action<String>() {
+        removeParcel(toUpdate.getParcelID(), new Action<String>() {
             @Override
             public void onSuccess(String obj) {
                 addParcel(toUpdate, action);

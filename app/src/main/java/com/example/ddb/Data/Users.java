@@ -24,5 +24,4 @@ public class Users {
         throw new Exception();
     }
 
-
 }
