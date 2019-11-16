@@ -3,6 +3,7 @@ package com.example.ddb.Data.Parcel_dataSource_Maneger;
 import androidx.annotation.NonNull;
 
 import com.example.ddb.Data.Action;
+import com.example.ddb.Data.NotifyDataChange;
 import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Parcel;
 import com.example.ddb.Entities.Parcel_Type;
@@ -124,24 +125,21 @@ public class RegisteredPackagesDS {
         });
     }
 
-    /* private static ChildEventListener studentRefChildEventListener; */
-
-   /* public static void notifyToStudentList(final NotifyDataChange<List<Student>> notifyDataChange) {
+    private static ChildEventListener parcelRefChildEventListener;
+    public static void notifyToParcelList(final NotifyDataChange<List<Parcel>> notifyDataChange) {
         if (notifyDataChange != null) {
 
-            if (studentRefChildEventListener != null) {
+            if (parcelRefChildEventListener != null) {
                 notifyDataChange.onFailure(new Exception("first unNotify student list"));
                 return;
             }
             parcelList.clear();
 
-            studentRefChildEventListener = new ChildEventListener() {
+            parcelRefChildEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Student student = dataSnapshot.getValue(Student.class);
-                    String id = dataSnapshot.getKey();
-                    student.setId(Long.parseLong(id));
-                    parcelList.add(student);
+                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
+                    parcelList.add(parcel);
 
 
                     notifyDataChange.OnDataChanged(parcelList);
@@ -149,14 +147,13 @@ public class RegisteredPackagesDS {
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    Student student = dataSnapshot.getValue(Student.class);
-                    Long id = Long.parseLong(dataSnapshot.getKey());
-                    student.setId(id);
+                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
+                    String parcelid = dataSnapshot.getKey();
 
 
                     for (int i = 0; i < parcelList.size(); i++) {
-                        if (parcelList.get(i).getId().equals(id)) {
-                            parcelList.set(i, student);
+                        if (parcelList.get(i).getParcelID().equals(parcelid)) {
+                            parcelList.set(i, parcel);
                             break;
                         }
                     }
@@ -165,12 +162,11 @@ public class RegisteredPackagesDS {
 
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    Student student = dataSnapshot.getValue(Student.class);
-                    Long id = Long.parseLong(dataSnapshot.getKey());
-                    student.setId(id);
+                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
+                    String parcelid = dataSnapshot.getKey();
 
                     for (int i = 0; i < parcelList.size(); i++) {
-                        if (parcelList.get(i).getId() == id) {
+                        if (parcelList.get(i).getParcelID() == parcelid) {
                             parcelList.remove(i);
                             break;
                         }
@@ -187,17 +183,15 @@ public class RegisteredPackagesDS {
                     notifyDataChange.onFailure(databaseError.toException());
                 }
             };
-            parcelsRef.addChildEventListener(studentRefChildEventListener);
+            parcelsRef.addChildEventListener(parcelRefChildEventListener);
         }
     }
 
-    public static void stopNotifyToStudentList() {
-        if (studentRefChildEventListener != null) {
-            parcelsRef.removeEventListener(studentRefChildEventListener);
-            studentRefChildEventListener = null;
+    public static void stopNotifyToParcelList() {
+        if (parcelRefChildEventListener != null) {
+            parcelsRef.removeEventListener(parcelRefChildEventListener);
+            parcelRefChildEventListener = null;
         }
     }
-
-    */
 
 }
