@@ -193,5 +193,4 @@ public class RegisteredPackagesDS {
             parcelRefChildEventListener = null;
         }
     }
-
 }
