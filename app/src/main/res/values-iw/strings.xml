@@ -15,4 +15,7 @@
     <string name="blessing_2">טוב לראות אותכם,</string>
     <string name="blessing_3">שלום לכם,</string>
     <string name="log_out">כבר הולכים?</string>
+    <string name="next">הבא</string>
+    <string name="done">סיימתי!</string>
+    <string name="hello_blank_fragment">שלום פראגמנט ריק</string>
 </resources>

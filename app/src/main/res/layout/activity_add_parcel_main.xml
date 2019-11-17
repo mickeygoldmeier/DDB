@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    tools:context=".UI.AddParcelProcces.AddParcelMain">
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:rotationY="180"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/view_pager">
+
+        <Button
+            android:id="@+id/next_btn"
+            style="@android:style/MediaButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/next" />
+
+        <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
+            android:id="@+id/dot_indect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:numberOfDots="5"
+            app:selectedDotColor="@color/colorPrimaryDark"
+            app:selectedDotDiameter="4pt"
+            app:selectedDotIndex="1"
+            app:unselectedDotColor="@color/colorPrimary"
+            app:unselectedDotDiameter="3pt"
+            android:padding="20dp"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

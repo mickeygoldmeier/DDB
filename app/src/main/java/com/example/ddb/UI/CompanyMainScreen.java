@@ -21,6 +21,8 @@ import com.example.ddb.Entities.Parcel;
 import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
+import com.example.ddb.UI.AddParcelProcces.AddParcelMain;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Random;
 
@@ -75,6 +77,16 @@ public class CompanyMainScreen extends AppCompatActivity {
                         })
                         .setNegativeButton(android.R.string.no, null)
                         .show();
+            }
+        });
+
+        // add parcel fab
+        FloatingActionButton add_parcel_fab = findViewById(R.id.add_parcel_fab);
+        add_parcel_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddParcelMain.class);
+                startActivity(intent);
             }
         });
     }

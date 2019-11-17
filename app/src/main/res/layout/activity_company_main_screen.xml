@@ -20,7 +20,7 @@
             android:id="@+id/log_out_btn"
             android:layout_width="10pt"
             android:layout_height="10pt"
-            android:layout_gravity="right"
+            android:layout_gravity="start"
             android:background="@drawable/log_out_icon" />
 
         <TextView
@@ -42,6 +42,14 @@
             android:text="@android:string/unknownName" />
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_parcel_fab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:srcCompat="@drawable/add_parcel_icon" />
 
     <ScrollView
         android:layout_width="match_parent"

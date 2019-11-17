@@ -15,4 +15,9 @@
     <string name="blessing_2">Good to see you,</string>
     <string name="blessing_3">Hello there,</string>
     <string name="log_out">Allready going?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="done">I\'m done!</string>
 </resources>
