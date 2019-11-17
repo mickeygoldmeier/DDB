@@ -23,7 +23,6 @@ public class RegisteredPackagesDS {
     static DatabaseReference parcelsRef;
     static List<Parcel> parcelList;
     static {
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         parcelsRef = database.getReference("RegisteredPackages");
         parcelList = new ArrayList<>();
