@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 
 import com.example.ddb.R;
 
+import java.util.HashMap;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddParcelFragment3 extends Fragment {
+public class AddParcelFragment3 extends Fragment implements GetDataInterface{
 
 
     public AddParcelFragment3() {
@@ -29,4 +31,10 @@ public class AddParcelFragment3 extends Fragment {
         return inflater.inflate(R.layout.fragment_add_parcel_fragment3, container, false);
     }
 
+    @Override
+    public HashMap<String, Object> getData() {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("Weight", 3.2);
+        return hashMap;
+    }
 }
