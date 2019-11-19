@@ -47,13 +47,12 @@ public class RegisteredPackagesDS {
 
             }
         });
-        parcelsRef.getParent();
     }
 
 
     public static void removeParcel(String parcelid, final Action<String> action) {
-
         final String key = parcelid;
+
 
         parcelsRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -104,26 +103,6 @@ public class RegisteredPackagesDS {
         });
     }
 
-    public void add(){
-        Parcel parcel = new Parcel( Parcel_Type.Envelope,true,21.4,new Address("ass","ass","ass",4),"+97254345466","123456");
-
-        RegisteredPackagesDS.addParcel(parcel,new Action<String>(){
-            @Override
-            public void onSuccess(String obj) {
-                System.out.println( "insert id " + obj);
-            }
-
-            @Override
-            public void onFailure(Exception exception) {
-                System.out.println( "Error \n" + exception.getMessage());
-            }
-            @Override
-            public void onProgress(String status, double percent) {
-                System.out.println( "Error \n" + percent);
-            }
-        });
-    }
-
     private static ChildEventListener parcelRefChildEventListener;
     public static void notifyToParcelList(final NotifyDataChange<List<Parcel>> notifyDataChange) {
         if (notifyDataChange != null) {
@@ -139,8 +118,6 @@ public class RegisteredPackagesDS {
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Parcel parcel = dataSnapshot.getValue(Parcel.class);
                     parcelList.add(parcel);
-
-
                     notifyDataChange.OnDataChanged(parcelList);
                 }
 
