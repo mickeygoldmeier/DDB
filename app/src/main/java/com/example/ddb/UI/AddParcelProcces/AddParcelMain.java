@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.ddb.Data.Action;
+import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
+import com.example.ddb.Entities.Address;
+import com.example.ddb.Entities.Parcel;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.R;
 import com.matthewtamlin.sliding_intro_screen_library.buttons.IntroButton;
 import com.matthewtamlin.sliding_intro_screen_library.core.IntroActivity;
@@ -93,9 +97,34 @@ public class AddParcelMain extends AppCompatActivity {
         Glide.with(this).load(R.drawable.new_parcel_gif).into(gif_iv);
     }
 
-    private Parcel convertHashMapToParcel(HashMap<String, Object> hashMap)
+    private void convertHashMapToParcel(HashMap<String, Object> hashMap)
     {
-        // tfytfgf
-        return null;
+        Parcel parcel = new Parcel();
+        parcel.setParcelID();
+        parcel.setFragile((boolean)hashMap.get("Fragile"));
+        parcel.setRecipientPhone((String)hashMap.get("RecipientPhone"));
+        parcel.setWeight((double)hashMap.get("Weight"));
+        parcel.setType((Parcel_Type)hashMap.get("Type"));
+        parcel.setDistributionCenterAddress((Address)hashMap.get("DistributionCenterAddress"));
+
+        add_parcel_to_firebase(parcel);
+    }
+
+    private void add_parcel_to_firebase(Parcel parcel) {
+        RegisteredPackagesDS.addParcel(parcel,new Action<String>(){
+            @Override
+            public void onSuccess(String obj){
+                Toast.makeText(getBaseContext(),"parcel with id " + obj+ "was uploded",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                Toast.makeText(getBaseContext(),"Error \n" + exception.getMessage(),Toast.LENGTH_LONG).show();                 ;
+            }
+            @Override
+            public void onProgress(String status, double percent) {
+            }
+        });
+
     }
 }
