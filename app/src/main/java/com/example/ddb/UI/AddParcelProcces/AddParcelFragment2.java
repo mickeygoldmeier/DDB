@@ -22,8 +22,9 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddParcelFragment2 extends Fragment implements GetDataInterface {
+public class AddParcelFragment2 extends DataGetterFragment {
 
+    private double Weight;
 
     public AddParcelFragment2() {
         // Required empty public constructor
@@ -83,6 +84,12 @@ public class AddParcelFragment2 extends Fragment implements GetDataInterface {
     public HashMap<String, Object> getData() {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("Fragile", fragile[0]);
+        hashMap.put("Weight", Weight);
         return hashMap;
+    }
+
+    @Override
+    public void saveInternalData() {
+
     }
 }

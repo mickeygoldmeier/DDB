@@ -9,7 +9,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class AddParcelAdapter extends FragmentPagerAdapter implements GetDataInterface {
-    private static LinkedList<Fragment> fragments = new LinkedList<>();
+    private static LinkedList<DataGetterFragment> fragments = new LinkedList<>();
+
     static {
         fragments.add(new AddParcelFragment1());
         fragments.add(new AddParcelFragment2());
@@ -23,6 +24,11 @@ public class AddParcelAdapter extends FragmentPagerAdapter implements GetDataInt
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        try {
+            fragments.get(position - 1).saveInternalData();
+        } catch (Exception e) {
+
+        }
         return fragments.get(position);
     }
 
@@ -34,12 +40,16 @@ public class AddParcelAdapter extends FragmentPagerAdapter implements GetDataInt
     @Override
     public HashMap<String, Object> getData() {
         HashMap<String, Object> hashMap = new HashMap<>();
-        for (Fragment fragment:fragments) {
-            for (String key: ((GetDataInterface)fragment).getData().keySet())
-            {
-                hashMap.put(key, ((GetDataInterface)fragment).getData().get(key));
+        for (DataGetterFragment fragment : fragments) {
+            for (String key : fragment.getData().keySet()) {
+                hashMap.put(key, fragment.getData().get(key));
             }
         }
         return hashMap;
+    }
+
+    @Override
+    public void saveInternalData() {
+        return;
     }
 }

@@ -44,6 +44,9 @@ public class AddParcelMain extends AppCompatActivity {
         final DotIndicator dot_indect = findViewById(R.id.dot_indect);
         dot_indect.setNumberOfItems(parcelAdapter.getCount());
 
+        view_pager.bringToFront();
+        view_pager.invalidate();
+
         // set up the next button
         final Button next_btn = findViewById(R.id.next_btn);
         next_btn.setOnClickListener(new View.OnClickListener() {

@@ -16,8 +16,7 @@ import java.util.HashMap;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddParcelFragment3 extends Fragment implements GetDataInterface{
-
+public class AddParcelFragment3 extends DataGetterFragment{
 
     public AddParcelFragment3() {
         // Required empty public constructor
@@ -36,5 +35,10 @@ public class AddParcelFragment3 extends Fragment implements GetDataInterface{
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("Weight", 3.2);
         return hashMap;
+    }
+
+    @Override
+    public void saveInternalData() {
+
     }
 }
