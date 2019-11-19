@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ddb.Data.Action;
+import com.example.ddb.Data.CitiesList;
 import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Data.Users;
 import com.example.ddb.Entities.Address;
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // update the cities list
+        CitiesList.UpdateCitiesList();
+
         // hide the Action Bar and the Status bar
         try {
             getSupportActionBar().hide();

@@ -55,8 +55,10 @@ public class AddParcelFragment1 extends DataGetterFragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 // validate the phone number using regex
-                if(!editable.toString().matches("(((05)|(\\+?(9725)))[0-9]{8})"))
+                if(!editable.toString().matches("(((05)|(\\+?(9725)))[0-9]{8})")) {
+                    RecipientPhone = editable.toString();
                     recipient_phone_et.setTextColor(Color.RED);
+                }
                 else
                     recipient_phone_et.setTextColor(Color.BLACK);
             }
@@ -70,15 +72,6 @@ public class AddParcelFragment1 extends DataGetterFragment {
     public HashMap<String, Object> getData() {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("RecipientPhone", RecipientPhone);
-        RecipientPhone = "";
         return hashMap;
-    }
-
-    @Override
-    public void saveInternalData() {
-        try {
-            RecipientPhone = recipient_phone_et.getText().toString();
-        } catch (Exception e) {
-        }
     }
 }

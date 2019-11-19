@@ -1,7 +1,6 @@
 package com.example.ddb.UI.AddParcelProcces;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.ddb.Data.Action;
@@ -18,27 +17,22 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.R;
-import com.matthewtamlin.sliding_intro_screen_library.buttons.IntroButton;
-import com.matthewtamlin.sliding_intro_screen_library.core.IntroActivity;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 public class AddParcelMain extends AppCompatActivity {
 
     private boolean isFinished = false;
-    HashMap<String, Object> hashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_parcel_main);
 
-        try{
+        try {
             getActionBar().hide();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             getSupportActionBar().hide();
         }
 
@@ -52,17 +46,21 @@ public class AddParcelMain extends AppCompatActivity {
         view_pager.bringToFront();
         view_pager.invalidate();
 
-        ((RelativeLayout)findViewById(R.id.relativeLayout)).bringToFront();
+        ((RelativeLayout) findViewById(R.id.relativeLayout)).bringToFront();
 
         // set up the next button
         final Button next_btn = findViewById(R.id.next_btn);
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isFinished)
-                    hashMap = parcelAdapter.getData();
+                if (isFinished) {
+                    HashMap hashMap = parcelAdapter.getData();
+                    addParcelToFirebase(convertHashMapToParcel(hashMap));
+                }
                 try {
                     view_pager.setCurrentItem(view_pager.getCurrentItem() + 1);
+                    if (view_pager.getCurrentItem() == parcelAdapter.getCount() - 1)
+                        isFinished = true;
                 } catch (Exception e) {
 
                 }
@@ -77,11 +75,10 @@ public class AddParcelMain extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if(view_pager.getCurrentItem() + 1 == parcelAdapter.getCount()) {
+                if (view_pager.getCurrentItem() + 1 == parcelAdapter.getCount()) {
                     isFinished = true;
                     next_btn.setText(R.string.done);
-                }
-                else {
+                } else {
                     isFinished = false;
                     next_btn.setText(R.string.next);
                 }
@@ -97,30 +94,29 @@ public class AddParcelMain extends AppCompatActivity {
         Glide.with(this).load(R.drawable.new_parcel_gif).into(gif_iv);
     }
 
-    private void convertHashMapToParcel(HashMap<String, Object> hashMap)
-    {
+    private Parcel convertHashMapToParcel(HashMap<String, Object> hashMap) {
         Parcel parcel = new Parcel();
         parcel.setParcelID();
-        parcel.setFragile((boolean)hashMap.get("Fragile"));
-        parcel.setRecipientPhone((String)hashMap.get("RecipientPhone"));
-        parcel.setWeight((double)hashMap.get("Weight"));
-        parcel.setType((Parcel_Type)hashMap.get("Type"));
-        parcel.setDistributionCenterAddress((Address)hashMap.get("DistributionCenterAddress"));
-
-        add_parcel_to_firebase(parcel);
+        parcel.setFragile((boolean) hashMap.get("Fragile"));
+        parcel.setRecipientPhone((String) hashMap.get("RecipientPhone"));
+        parcel.setWeight((double) hashMap.get("Weight"));
+        parcel.setType((Parcel_Type) hashMap.get("Type"));
+        parcel.setDistributionCenterAddress((Address) hashMap.get("DistributionCenterAddress"));
+        return parcel;
     }
 
-    private void add_parcel_to_firebase(Parcel parcel) {
-        RegisteredPackagesDS.addParcel(parcel,new Action<String>(){
+    private void addParcelToFirebase(Parcel parcel) {
+        RegisteredPackagesDS.addParcel(parcel, new Action<String>() {
             @Override
-            public void onSuccess(String obj){
-                Toast.makeText(getBaseContext(),"parcel with id " + obj+ "was uploded",Toast.LENGTH_LONG).show();
+            public void onSuccess(String obj) {
+                Toast.makeText(getBaseContext(), "parcel with id " + obj + "was uploded", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Exception exception) {
-                Toast.makeText(getBaseContext(),"Error \n" + exception.getMessage(),Toast.LENGTH_LONG).show();                 ;
+                Toast.makeText(getBaseContext(), "Error \n" + exception.getMessage(), Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onProgress(String status, double percent) {
             }

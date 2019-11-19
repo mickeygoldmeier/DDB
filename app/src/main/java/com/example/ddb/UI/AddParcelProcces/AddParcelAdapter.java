@@ -24,11 +24,6 @@ public class AddParcelAdapter extends FragmentPagerAdapter implements GetDataInt
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        try {
-            fragments.get(position - 1).saveInternalData();
-        } catch (Exception e) {
-
-        }
         return fragments.get(position);
     }
 
@@ -46,10 +41,5 @@ public class AddParcelAdapter extends FragmentPagerAdapter implements GetDataInt
             }
         }
         return hashMap;
-    }
-
-    @Override
-    public void saveInternalData() {
-        return;
     }
 }

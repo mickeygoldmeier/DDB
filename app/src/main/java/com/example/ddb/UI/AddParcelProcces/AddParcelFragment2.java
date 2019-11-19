@@ -22,6 +22,7 @@ import com.example.ddb.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,6 +33,8 @@ public class AddParcelFragment2 extends DataGetterFragment {
     private static double Weight;
     private static Parcel_Type Type;
     private static boolean Fragile;
+
+    private Spinner parcel_type_spr;
 
     public AddParcelFragment2() {
         // Required empty public constructor
@@ -46,22 +49,32 @@ public class AddParcelFragment2 extends DataGetterFragment {
         final View view = inflater.inflate(R.layout.fragment_add_parcel_fragment2, container, false);
 
         // set up the type spinner
-        Spinner parcel_type_spr = view.findViewById(R.id.parcel_type_spr);
+        parcel_type_spr = view.findViewById(R.id.parcel_type_spr);
         final String[] type = {getString(R.string.envelope),
                 getString(R.string.small_package),
                 getString(R.string.large_package)};
-        parcel_type_spr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*parcel_type_spr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Type = Parcel_Type.values()[i];
-                Toast.makeText(getContext(), String.valueOf(Type), Toast.LENGTH_SHORT);
+                switch (i)
+                {
+                    case 1:
+                        Type = Parcel_Type.SmallPackage;
+                        break;
+                    case 2:
+                        Type = Parcel_Type.LargePackage;
+                        break;
+                    default:
+                        Type = Parcel_Type.Envelope;
+                        break;
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
         ArrayAdapter aa1 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, type);
         aa1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         parcel_type_spr.setAdapter(aa1);
@@ -116,14 +129,23 @@ public class AddParcelFragment2 extends DataGetterFragment {
     @Override
     public HashMap<String, Object> getData() {
         HashMap<String, Object> hashMap = new HashMap<>();
+
+        switch ((int) parcel_type_spr.getSelectedItemId())
+        {
+            case 1:
+                Type = Parcel_Type.SmallPackage;
+                break;
+            case 2:
+                Type = Parcel_Type.LargePackage;
+                break;
+            default:
+                Type = Parcel_Type.Envelope;
+                break;
+        }
+
         hashMap.put("Fragile", Fragile);
         hashMap.put("Weight", Weight);
         hashMap.put("Type", Type);
         return hashMap;
-    }
-
-    @Override
-    public void saveInternalData() {
-
     }
 }

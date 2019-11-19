@@ -22,6 +22,7 @@ import java.util.List;
 public class RegisteredPackagesDS {
     static DatabaseReference parcelsRef;
     static List<Parcel> parcelList;
+
     static {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         parcelsRef = database.getReference("RegisteredPackages");
@@ -29,11 +30,10 @@ public class RegisteredPackagesDS {
     }
 
 
-
     public static void addParcel(final Parcel parcel, final Action<String> action) {
         String phone = parcel.getRecipientPhone();
         String key = parcel.getParcelID();
-        parcelsRef.child(phone + "/" +key).setValue(parcel).addOnSuccessListener(new OnSuccessListener<Void>() {
+        parcelsRef.child(phone + "/" + key).setValue(parcel).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 action.onSuccess(parcel.getParcelID());
@@ -83,7 +83,7 @@ public class RegisteredPackagesDS {
     }
 
     public static void updateParcel(final Parcel toUpdate, final Action<String> action) {
-        final String key =  toUpdate.getParcelID();
+        final String key = toUpdate.getParcelID();
 
         removeParcel(toUpdate.getParcelID(), new Action<String>() {
             @Override
@@ -104,6 +104,7 @@ public class RegisteredPackagesDS {
     }
 
     private static ChildEventListener parcelRefChildEventListener;
+
     public static void notifyToParcelList(final NotifyDataChange<List<Parcel>> notifyDataChange) {
         if (notifyDataChange != null) {
 
