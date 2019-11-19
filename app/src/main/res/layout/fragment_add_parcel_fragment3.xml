@@ -27,4 +27,52 @@
         android:text="@string/enter_the_parcel_data"
         android:textSize="25sp" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:hint="מדינה"
+        android:background="@drawable/edit_text_style_light"
+        android:padding="10dp"
+        android:paddingStart="10dp"
+        android:gravity="start"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:hint="עיר"
+        android:background="@drawable/edit_text_style_light"
+        android:padding="10dp"
+        android:paddingStart="10dp"
+        android:gravity="start"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:hint="רחוב"
+        android:background="@drawable/edit_text_style_light"
+        android:padding="10dp"
+        android:paddingStart="10dp"
+        android:gravity="start"
+        android:layout_margin="7dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="מספר בית"
+        android:background="@drawable/edit_text_style_light"
+        android:padding="10dp"
+        android:paddingStart="10dp"
+        android:gravity="start"
+        android:layout_margin="7dp"/>
+
 </LinearLayout>

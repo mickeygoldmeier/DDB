@@ -54,7 +54,8 @@ public class AddParcelFragment1 extends DataGetterFragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(!editable.toString().matches("((05)|(\\+?(9725))[0-9]{8})"))
+                // validate the phone number using regex
+                if(!editable.toString().matches("(((05)|(\\+?(9725)))[0-9]{8})"))
                     recipient_phone_et.setTextColor(Color.RED);
                 else
                     recipient_phone_et.setTextColor(Color.BLACK);
