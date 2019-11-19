@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="bottom"
+    android:background="#F5F5F5"
     tools:context=".UI.AddParcelProcces.AddParcelMain">
 
 
@@ -13,10 +14,13 @@
         android:id="@+id/view_pager"
         android:rotationY="180"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+    </androidx.viewpager.widget.ViewPager>
 
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/view_pager">
@@ -33,14 +37,23 @@
             android:id="@+id/dot_indect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             app:numberOfDots="5"
-            app:selectedDotColor="@color/colorPrimaryDark"
+            app:selectedDotColor="#72787E"
             app:selectedDotDiameter="4pt"
             app:selectedDotIndex="1"
-            app:unselectedDotColor="@color/colorPrimary"
-            app:unselectedDotDiameter="3pt"
-            android:padding="20dp"/>
+            app:unselectedDotColor="#BADFDB"
+            app:unselectedDotDiameter="3pt">
+
+        </com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator>
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/gif_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:srcCompat="@drawable/new_parcel_gif" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

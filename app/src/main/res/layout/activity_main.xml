@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="phone"
             android:hint="@string/phone_or_id"
             android:background="@drawable/edit_text_style"
             android:padding="10dp"

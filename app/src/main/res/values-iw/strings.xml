@@ -18,4 +18,11 @@
     <string name="next">הבא</string>
     <string name="done">סיימתי!</string>
     <string name="hello_blank_fragment">שלום פראגמנט ריק</string>
+    <string name="choose_user">בוא נבחר נמען!</string>
+    <string name="enter_number_recipent">מי יהיה המאושר שיזכה לקבל את החבילה?</string>
+    <string name="envelope">זה מעטפה</string>
+    <string name="small_package">זה חבילה קטנה</string>
+    <string name="large_package">זה חבילה גדולה</string>
+    <string name="parcel_data">מה יש לך שם?</string>
+    <string name="enter_the_parcel_data">בוא נשחק משחק ניחושים קטן...</string>
 </resources>

@@ -20,4 +20,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="next">Next</string>
     <string name="done">I\'m done!</string>
+    <string name="choose_user">Lets choose a recipent!</string>
+    <string name="enter_number_recipent">How will be the lucky one to get the parcel?</string>
+    <string name="envelope">It,s a envelope</string>
+    <string name="small_package">It\'s a small package</string>
+    <string name="large_package">It\'s a large package</string>
+    <string name="parcel_data">What do you have there?</string>
+    <string name="enter_the_parcel_data">Lets play a little guessing game...</string>
 </resources>

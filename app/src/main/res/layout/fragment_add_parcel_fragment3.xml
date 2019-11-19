@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00F5F5F5"
+    android:orientation="vertical"
+    android:gravity="center|top"
+    android:padding="10pt"
     android:rotationY="180"
     tools:context=".UI.AddParcelProcces.AddParcelFragment3">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:background="#FF0000"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/parcel_data"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/enter_the_parcel_data"
+        android:textSize="25sp" />
+
+</LinearLayout>
