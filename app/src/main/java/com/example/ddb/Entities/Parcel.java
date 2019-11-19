@@ -1,5 +1,7 @@
 package com.example.ddb.Entities;
 
+import com.google.firebase.database.Exclude;
+
 public class Parcel {
 
     private Parcel_Type Type;
@@ -8,6 +10,8 @@ public class Parcel {
     private Address DistributionCenterAddress;
     private String RecipientPhone;
     private String ParcelID;
+    @Exclude
+    private static int id;
 
     public Parcel() {
     }
@@ -28,7 +32,10 @@ public class Parcel {
     public String getRecipientPhone() {return RecipientPhone;}
     public String getParcelID() {return ParcelID;}
 
-    public void setParcelID(String parcelID) {ParcelID = parcelID;}
+    public void setParcelID() {
+        ParcelID = String.valueOf(id);
+        id += 1;
+    }
     public void setType(Parcel_Type type) {Type = type;}
     public void setFragile(boolean fragile) {Fragile = fragile;}
     public void setWeight(double weight) {Weight = weight;}
