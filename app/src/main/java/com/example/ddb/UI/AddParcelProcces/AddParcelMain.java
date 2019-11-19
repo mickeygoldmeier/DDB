@@ -97,6 +97,7 @@ public class AddParcelMain extends AppCompatActivity {
     private void convertHashMapToParcel(HashMap<String, Object> hashMap)
     {
         Parcel parcel = new Parcel();
+        parcel.setParcelID();
         parcel.setFragile((boolean)hashMap.get("Fragile"));
         parcel.setRecipientPhone((String)hashMap.get("RecipientPhone"));
         parcel.setWeight((double)hashMap.get("Weight"));
