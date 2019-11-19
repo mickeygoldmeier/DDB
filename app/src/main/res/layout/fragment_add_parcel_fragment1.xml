@@ -26,8 +26,10 @@
         android:text="@string/enter_number_recipent" />
 
     <EditText
+        android:id="@+id/recipient_phone_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textDirection="ltr"
         android:ems="10"
         android:inputType="phone"
         android:hint="@string/phone_or_id"

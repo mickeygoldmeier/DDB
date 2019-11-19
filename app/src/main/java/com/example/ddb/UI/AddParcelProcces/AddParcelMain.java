@@ -9,6 +9,7 @@ import android.os.Parcel;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -46,6 +47,8 @@ public class AddParcelMain extends AppCompatActivity {
 
         view_pager.bringToFront();
         view_pager.invalidate();
+
+        ((RelativeLayout)findViewById(R.id.relativeLayout)).bringToFront();
 
         // set up the next button
         final Button next_btn = findViewById(R.id.next_btn);
