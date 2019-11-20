@@ -18,7 +18,7 @@ public class ConfigDS {
     static {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         configRef = database.getReference("Config");
-        Config = "";
+        Config = "100000";
     }
 
 
@@ -91,13 +91,26 @@ public class ConfigDS {
         });
     }
 
-    public static void getConfigDS(final String key) {
-        DatabaseReference usersRef = configRef.child(key);
+    public static void getConfigID() {
+        DatabaseReference usersRef = configRef.child("ParcelID");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Config = dataSnapshot.getValue().toString();
+                Config = dataSnapshot.getValue(String.class);
+                ConfigDS.updateConfig("ParcelID", String.valueOf(Integer.parseInt(Config) + 1), new Action<String>() {
+                    @Override
+                    public void onSuccess(String obj) {
+                    }
 
+                    @Override
+                    public void onFailure(Exception exception) {
+
+                    }
+
+                    @Override
+                    public void onProgress(String status, double percent) {
+                    }
+                });
                 //Do what you need to do with your list
             }
 
@@ -109,8 +122,9 @@ public class ConfigDS {
         usersRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    public static String getConfig(String key) {
-        getConfigDS(key);
+    public static String getConfig() {
+        getConfigID();
         return Config;
     }
+
 }

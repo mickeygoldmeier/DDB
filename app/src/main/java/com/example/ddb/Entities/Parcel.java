@@ -76,21 +76,10 @@ public class Parcel {
         RecipientPhone = recipientPhone;
     }
 
+
     public void getIdFromDataBase() {
-        setParcelID(ConfigDS.getConfig("ParcelID"));
-        ConfigDS.updateConfig("ParcelID", String.valueOf(Integer.parseInt(getParcelID()) + 1), new Action<String>() {
-            @Override
-            public void onSuccess(String obj) {
-            }
+        setParcelID(ConfigDS.getConfig());
 
-            @Override
-            public void onFailure(Exception exception) {
-            }
-
-            @Override
-            public void onProgress(String status, double percent) {
-            }
-        });
     }
 }
 
