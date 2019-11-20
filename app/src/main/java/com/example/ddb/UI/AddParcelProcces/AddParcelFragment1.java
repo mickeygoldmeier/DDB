@@ -49,18 +49,18 @@ public class AddParcelFragment1 extends DataGetterFragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                // validate the phone number using regex
-                if(!editable.toString().matches("(((05)|(\\+?(9725)))[0-9]{8})")) {
-                    RecipientPhone = editable.toString();
+// validate the phone number using regex
+                if(!charSequence.toString().matches("(((05)|(\\+?(9725)))[0-9]{8})")) {
+                    RecipientPhone = charSequence.toString();
                     recipient_phone_et.setTextColor(Color.RED);
                 }
                 else
                     recipient_phone_et.setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
@@ -72,6 +72,7 @@ public class AddParcelFragment1 extends DataGetterFragment {
     public HashMap<String, Object> getData() {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("RecipientPhone", RecipientPhone);
+        RecipientPhone = "";
         return hashMap;
     }
 }
