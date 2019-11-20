@@ -98,6 +98,7 @@ public class ConfigDS {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Config = dataSnapshot.getValue(String.class);
+                notifyDataChange.OnDataChanged(Config);
                 ConfigDS.updateConfig("ParcelID", String.valueOf(Integer.parseInt(Config) + 1), new Action<String>() {
                     @Override
                     public void onSuccess(String obj) {
@@ -113,7 +114,7 @@ public class ConfigDS {
                     }
                 });
                 //Do what you need to do with your list
-                notifyDataChange.OnDataChanged(Config);
+
             }
 
             @Override
