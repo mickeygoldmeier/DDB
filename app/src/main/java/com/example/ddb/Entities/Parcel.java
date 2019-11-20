@@ -4,6 +4,7 @@ import android.widget.Toast;
 
 import com.example.ddb.Data.Action;
 import com.example.ddb.Data.Config_dataSource_Maneger.ConfigDS;
+import com.example.ddb.Data.NotifyDataChange;
 import com.google.firebase.database.Exclude;
 
 public class Parcel {
@@ -78,8 +79,17 @@ public class Parcel {
 
 
     public void getIdFromDataBase() {
-        setParcelID(ConfigDS.getConfig());
 
+        ConfigDS.getConfigID(new NotifyDataChange<String>() {
+            @Override
+            public void OnDataChanged(String obj) {
+                setParcelID(obj);
+            }
+            @Override
+            public void onFailure(Exception exception) {
+
+            }
+        });
     }
 }
 
