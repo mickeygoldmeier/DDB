@@ -3,63 +3,56 @@ package com.example.ddb.Data.Config_dataSource_Maneger;
 import androidx.annotation.NonNull;
 
 import com.example.ddb.Data.Action;
-import com.example.ddb.Entities.Parcel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ConfigDS {
-    static DatabaseReference parcelsRef;
-    static List<Parcel> parcelList;
+    static DatabaseReference configRef;
+    static String Config;
 
     static {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        parcelsRef = database.getReference("Config");
-        parcelList = new ArrayList<>();
+        configRef = database.getReference("Config");
+        Config = "";
     }
 
 
-    public static void addParcel(final String key,final String data, final Action<String> action) {
-        parcelsRef.child(key).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+    public static void addConfig(final String key, final String data, final Action<String> action) {
+        configRef.child(key).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 action.onSuccess(key);
-                action.onProgress("upload "+key+" data", 100);
+                action.onProgress("upload " + key + " data", 100);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 action.onFailure(e);
-                action.onProgress("error upload "+key+" data", 100);
+                action.onProgress("error upload " + key + " data", 100);
 
             }
         });
     }
 
 
-    public static void removeParcel(String parcelid, final Action<String> action) {
-        final String key = parcelid;
+    public static void removeConfig(final String key, final Action<String> action) {
 
-
-        parcelsRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+        configRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final Parcel value = dataSnapshot.getValue(Parcel.class);
+                final String value = dataSnapshot.getValue(String.class);
                 if (value == null)
                     action.onFailure(new Exception("parcel not find ..."));
                 else {
-                    parcelsRef.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    configRef.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            action.onSuccess(value.getParcelID());
+                            action.onSuccess(value);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -77,13 +70,13 @@ public class ConfigDS {
         });
     }
 
-    public static void updateParcel(final Parcel toUpdate, final Action<String> action) {
-        final String key = toUpdate.getParcelID();
+    public static void updateConfig(final String key, final String data, final Action<String> action) {
 
-        removeParcel(toUpdate.getParcelID(), new Action<String>() {
+
+        removeConfig(key, new Action<String>() {
             @Override
             public void onSuccess(String obj) {
-                addParcel(toUpdate, action);
+                addConfig(key, data, action);
             }
 
             @Override
@@ -98,72 +91,26 @@ public class ConfigDS {
         });
     }
 
-    private static ChildEventListener parcelRefChildEventListener;
-}
-    /**
-    public static void notifyToParcelList(final NotifyDataChange<List<Parcel>> notifyDataChange) {
-        if (notifyDataChange != null) {
+    public static void getConfigDS(final String key) {
+        DatabaseReference usersRef = configRef.child(key);
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Config = dataSnapshot.getValue().toString();
 
-            if (parcelRefChildEventListener != null) {
-                notifyDataChange.onFailure(new Exception("first unNotify student list"));
-                return;
+                //Do what you need to do with your list
             }
-            parcelList.clear();
 
-            parcelRefChildEventListener = new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
-                    parcelList.add(parcel);
-                    notifyDataChange.OnDataChanged(parcelList);
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
-                    String parcelid = dataSnapshot.getKey();
-
-
-                    for (int i = 0; i < parcelList.size(); i++) {
-                        if (parcelList.get(i).getParcelID().equals(parcelid)) {
-                            parcelList.set(i, parcel);
-                            break;
-                        }
-                    }
-                    notifyDataChange.OnDataChanged(parcelList);
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
-                    String parcelid = dataSnapshot.getKey();
-
-                    for (int i = 0; i < parcelList.size(); i++) {
-                        if (parcelList.get(i).getParcelID() == parcelid) {
-                            parcelList.remove(i);
-                            break;
-                        }
-                    }
-                    notifyDataChange.OnDataChanged(parcelList);
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    notifyDataChange.onFailure(databaseError.toException());
-                }
-            };
-            parcelsRef.addChildEventListener(parcelRefChildEventListener);
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Don't ignore errors!
+            }
+        };
+        usersRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    public static void stopNotifyToParcelList() {
-        if (parcelRefChildEventListener != null) {
-            parcelsRef.removeEventListener(parcelRefChildEventListener);
-            parcelRefChildEventListener = null;
-        }
+    public static String getConfig(String key) {
+        getConfigDS(key);
+        return Config;
     }
-} **/
+}
