@@ -27,9 +27,11 @@ import java.util.HashMap;
 public class AddParcelMain extends AppCompatActivity {
 
     private boolean isFinished = false;
+    private Parcel parcel = new Parcel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        parcel.getIdFromDataBase();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_parcel_main);
 
@@ -101,8 +103,6 @@ public class AddParcelMain extends AppCompatActivity {
     }
 
     private Parcel convertHashMapToParcel(HashMap<String, Object> hashMap) {
-        Parcel parcel = new Parcel();
-        parcel.setParcelID();
         parcel.setFragile((boolean) hashMap.get("Fragile"));
         parcel.setRecipientPhone((String) hashMap.get("RecipientPhone"));
         parcel.setWeight((double) hashMap.get("Weight"));

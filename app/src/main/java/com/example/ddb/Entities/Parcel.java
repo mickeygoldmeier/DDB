@@ -15,8 +15,6 @@ public class Parcel {
     private Address DistributionCenterAddress;
     private String RecipientPhone;
     private String ParcelID;
-    @Exclude
-    static String id;
 
     public Parcel() {
     }
@@ -54,8 +52,7 @@ public class Parcel {
         return ParcelID;
     }
 
-    public void setParcelID() {
-        getIdFromDataBase();
+    public void setParcelID(String id) {
         ParcelID = id;
     }
 
@@ -80,12 +77,11 @@ public class Parcel {
     }
 
 
-    private void getIdFromDataBase() {
+    public void getIdFromDataBase() {
         ConfigDS.getConfigID(new NotifyDataChange<String>() {
-
             @Override
             public void OnDataChanged(String obj) {
-                id = obj;
+                setParcelID(obj);
             }
             @Override
             public void onFailure(Exception exception) {
