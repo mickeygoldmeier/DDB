@@ -1,5 +1,8 @@
 package com.example.ddb.Entities;
 
+import android.widget.Toast;
+
+import com.example.ddb.Data.Action;
 import com.example.ddb.Data.Config_dataSource_Maneger.ConfigDS;
 import com.google.firebase.database.Exclude;
 
@@ -25,24 +28,70 @@ public class Parcel {
         ParcelID = parcelID;
     }
 
-    public Parcel_Type getType() {return Type;}
-    public boolean isFragile() {return Fragile;}
-    public double getWeight() {return Weight;}
-    public Address getDistributionCenterAddress() {return DistributionCenterAddress; }
-    public String getRecipientPhone() {return RecipientPhone;}
-    public String getParcelID() {return ParcelID;}
-
-    public void setParcelID(String id) { ParcelID = id; }
-    public void setType(Parcel_Type type) {Type = type;}
-    public void setFragile(boolean fragile) {Fragile = fragile;}
-    public void setWeight(double weight) {Weight = weight;}
-    public void setDistributionCenterAddress(Address distributionCenterAddress) {DistributionCenterAddress = distributionCenterAddress; }
-    public void setRecipientPhone(String recipientPhone) {RecipientPhone = recipientPhone; }
-
-    private String getIdFromDataBase(){
-        setParcelID(ConfigDS.getConfig("ParcelID"));
-        //ConfigDS.updateConfig("ParcelID",getParcelID());
-        return "ass";
+    public Parcel_Type getType() {
+        return Type;
     }
 
+    public boolean isFragile() {
+        return Fragile;
+    }
+
+    public double getWeight() {
+        return Weight;
+    }
+
+    public Address getDistributionCenterAddress() {
+        return DistributionCenterAddress;
+    }
+
+    public String getRecipientPhone() {
+        return RecipientPhone;
+    }
+
+    public String getParcelID() {
+        return ParcelID;
+    }
+
+    public void setParcelID(String id) {
+        ParcelID = id;
+    }
+
+    public void setType(Parcel_Type type) {
+        Type = type;
+    }
+
+    public void setFragile(boolean fragile) {
+        Fragile = fragile;
+    }
+
+    public void setWeight(double weight) {
+        Weight = weight;
+    }
+
+    public void setDistributionCenterAddress(Address distributionCenterAddress) {
+        DistributionCenterAddress = distributionCenterAddress;
+    }
+
+    public void setRecipientPhone(String recipientPhone) {
+        RecipientPhone = recipientPhone;
+    }
+
+    public void getIdFromDataBase() {
+        setParcelID(ConfigDS.getConfig("ParcelID"));
+        ConfigDS.updateConfig("ParcelID", String.valueOf(Integer.parseInt(getParcelID()) + 1), new Action<String>() {
+            @Override
+            public void onSuccess(String obj) {
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+            }
+
+            @Override
+            public void onProgress(String status, double percent) {
+            }
+        });
+    }
 }
+
+
