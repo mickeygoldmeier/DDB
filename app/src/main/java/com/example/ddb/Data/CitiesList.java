@@ -39,7 +39,9 @@ public class CitiesList {
             while ((line = br.readLine()) != null) {
                 if (i > 1) {
                     String[] city = line.split(",");
-                    CitiesList.add(city[2].split("\\)")[0]);
+                    String str = city[2].split("\\)")[0];
+                    str = str.replaceAll("( )( )+", "");
+                    CitiesList.add(str);
                 }
                 i++;
             }

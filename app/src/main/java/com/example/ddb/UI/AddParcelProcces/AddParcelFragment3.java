@@ -1,6 +1,8 @@
 package com.example.ddb.UI.AddParcelProcces;
 
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -58,24 +61,6 @@ public class AddParcelFragment3 extends DataGetterFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_parcel_fragment3, container, false);
 
-        // set up the cities spinner
-        Spinner cities_spr = view.findViewById(R.id.cities_spr);
-        final String[] cities = CitiesList.getCitiesArray();
-        cities_spr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                City = cities[i];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        ArrayAdapter aa1 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, cities);
-        aa1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cities_spr.setAdapter(aa1);
-
         final EditText home_number_et = view.findViewById(R.id.home_number_et);
         home_number_et.addTextChangedListener(new TextWatcher() {
             @Override
@@ -116,6 +101,35 @@ public class AddParcelFragment3 extends DataGetterFragment {
             }
         });
 
+        final AutoCompleteTextView cities_actv = view.findViewById(R.id.cities_actv);
+        final String[] citiesList = CitiesList.getCitiesArray();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, citiesList);
+        cities_actv.setAdapter(adapter);
+        cities_actv.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                for (String city : citiesList) {
+                    if (city.equals(editable.toString())){
+                        City = editable.toString();
+                        cities_actv.setTextColor(Color.BLACK);
+                        break;
+                    }
+                    else
+                        cities_actv.setTextColor(Color.RED);
+                }
+            }
+        });
 
         return view;
     }
