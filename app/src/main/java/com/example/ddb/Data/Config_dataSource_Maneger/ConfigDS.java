@@ -3,6 +3,7 @@ package com.example.ddb.Data.Config_dataSource_Maneger;
 import androidx.annotation.NonNull;
 
 import com.example.ddb.Data.Action;
+import com.example.ddb.Data.NotifyDataChange;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -91,7 +92,7 @@ public class ConfigDS {
         });
     }
 
-    public static void getConfigID() {
+    public static void getConfigID(final NotifyDataChange<String> notifyDataChange) {
         DatabaseReference usersRef = configRef.child("ParcelID");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -112,6 +113,7 @@ public class ConfigDS {
                     }
                 });
                 //Do what you need to do with your list
+                notifyDataChange.OnDataChanged(Config);
             }
 
             @Override
@@ -122,9 +124,6 @@ public class ConfigDS {
         usersRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    public static String getConfig() {
-        getConfigID();
-        return Config;
-    }
+
 
 }
