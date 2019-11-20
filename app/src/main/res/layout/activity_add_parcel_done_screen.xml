@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    tools:context=".UI.AddParcelProcces.AddParcelDoneScreen">
+
+    <ImageView
+        android:id="@+id/gif2_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:srcCompat="@drawable/add_pacel_done" />
+
+    <TextView
+        android:id="@+id/welcome_tv"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/parcel_added"
+        android:textStyle="bold"
+        android:textSize="25sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_style_regular"
+        android:padding="15dp"
+        android:text="@android:string/ok"
+        android:textColor="#ffffff" />
+
+</LinearLayout>

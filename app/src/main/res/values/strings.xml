@@ -27,4 +27,5 @@
     <string name="large_package">It\'s a large package</string>
     <string name="parcel_data">What do you have there?</string>
     <string name="enter_the_parcel_data">Lets play a little guessing game...</string>
+    <string name="parcel_added">The parcel is now registered!</string>
 </resources>
