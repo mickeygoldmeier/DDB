@@ -7,10 +7,13 @@ import com.example.ddb.Data.Action;
 import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Parcel;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -56,7 +59,6 @@ public class AddParcelMain extends AppCompatActivity {
                 if (isFinished) {
                     HashMap hashMap = parcelAdapter.getData();
                     addParcelToFirebase(convertHashMapToParcel(hashMap));
-                    finish();
                 }
                 try {
                     view_pager.setCurrentItem(view_pager.getCurrentItem() + 1);
@@ -110,16 +112,25 @@ public class AddParcelMain extends AppCompatActivity {
         RegisteredPackagesDS.addParcel(parcel, new Action<String>() {
             @Override
             public void onSuccess(String obj) {
-                Toast.makeText(getBaseContext(), "parcel with id " + obj + "was uploded", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getBaseContext(), "parcel with id " + obj + "was uploded", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), AddParcelDoneScreen.class);
+                startActivity(intent);
+
+                finish();
             }
 
             @Override
             public void onFailure(Exception exception) {
-                Toast.makeText(getBaseContext(), "Error \n" + exception.getMessage(), Toast.LENGTH_LONG).show();
+
             }
 
             @Override
             public void onProgress(String status, double percent) {
+                ProgressBar adding_prb = findViewById(R.id.adding_prb);
+                Button next_btn = findViewById(R.id.next_btn);
+
+                adding_prb.setVisibility(View.VISIBLE);
+                next_btn.setVisibility(View.GONE);
             }
         });
 

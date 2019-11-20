@@ -32,6 +32,17 @@
             android:layout_alignParentEnd="true"
             android:text="@string/next" />
 
+        <ProgressBar
+            android:id="@+id/adding_prb"
+            android:layout_width="13pt"
+            android:layout_height="13pt"
+            android:layout_alignParentEnd="true"
+            android:indeterminate="true"
+            android:indeterminateTint="#72787E"
+            android:visibility="gone"
+            android:indeterminateTintMode="src_atop"
+            android:layout_margin="10dp" />
+
         <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
             android:id="@+id/dot_indect"
             android:layout_width="match_parent"

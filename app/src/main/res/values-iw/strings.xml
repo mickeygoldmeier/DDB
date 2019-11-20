@@ -25,4 +25,5 @@
     <string name="large_package">זה חבילה גדולה</string>
     <string name="parcel_data">מה יש לך שם?</string>
     <string name="enter_the_parcel_data">בוא נשחק משחק ניחושים קטן...</string>
+    <string name="parcel_added">החבילה רשומה עכשיו!</string>
 </resources>
