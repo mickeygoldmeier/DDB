@@ -57,6 +57,9 @@ public class AddParcelMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (isFinished) {
+                    ProgressBar adding_prb = findViewById(R.id.adding_prb);
+                    adding_prb.setVisibility(View.VISIBLE);
+                    next_btn.setVisibility(View.GONE);
                     HashMap hashMap = parcelAdapter.getData();
                     addParcelToFirebase(convertHashMapToParcel(hashMap));
                 }
@@ -121,16 +124,16 @@ public class AddParcelMain extends AppCompatActivity {
 
             @Override
             public void onFailure(Exception exception) {
+                Button next_btn = findViewById(R.id.next_btn);
+                ProgressBar adding_prb = findViewById(R.id.adding_prb);
 
+                adding_prb.setVisibility(View.GONE);
+                next_btn.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onProgress(String status, double percent) {
-                ProgressBar adding_prb = findViewById(R.id.adding_prb);
-                Button next_btn = findViewById(R.id.next_btn);
 
-                adding_prb.setVisibility(View.VISIBLE);
-                next_btn.setVisibility(View.GONE);
             }
         });
 
