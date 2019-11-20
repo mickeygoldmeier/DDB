@@ -58,7 +58,6 @@ public class AddParcelFragment3 extends DataGetterFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_parcel_fragment3, container, false);
 
-
         // set up the cities spinner
         Spinner cities_spr = view.findViewById(R.id.cities_spr);
         final String[] cities = CitiesList.getCitiesArray();

@@ -104,7 +104,8 @@ public class RegisteredPackagesDS {
     }
 
     private static ChildEventListener parcelRefChildEventListener;
-
+}
+    /**
     public static void notifyToParcelList(final NotifyDataChange<List<Parcel>> notifyDataChange) {
         if (notifyDataChange != null) {
 
@@ -170,4 +171,4 @@ public class RegisteredPackagesDS {
             parcelRefChildEventListener = null;
         }
     }
-}
+} **/

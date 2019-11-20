@@ -83,7 +83,7 @@ public class AddParcelFragment2 extends DataGetterFragment {
         Spinner fragile_spr = view.findViewById(R.id.fragile_spr);
         final boolean[] fragileType = {true, false};
         final String[] fragileText = {"זה שביר", "זה לא שביר"};
-        parcel_type_spr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        fragile_spr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Fragile = fragileType[i];
