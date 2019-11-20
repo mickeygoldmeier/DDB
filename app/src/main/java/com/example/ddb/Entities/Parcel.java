@@ -11,7 +11,7 @@ public class Parcel {
     private String RecipientPhone;
     private String ParcelID;
     @Exclude
-    private static int id = 25014;
+    private static int id;
 
     public Parcel() {
     }

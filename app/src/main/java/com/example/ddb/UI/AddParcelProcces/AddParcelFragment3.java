@@ -91,10 +91,8 @@ public class AddParcelFragment3 extends DataGetterFragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 try {
-                    Integer.parseInt(editable.toString());
-                }
-                catch (Exception e)
-                {
+                    Number = Integer.parseInt(editable.toString());
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -117,6 +115,7 @@ public class AddParcelFragment3 extends DataGetterFragment {
                 Street = editable.toString();
             }
         });
+
 
         return view;
     }

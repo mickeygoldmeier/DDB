@@ -36,8 +36,9 @@ public class AddParcelAdapter extends FragmentPagerAdapter implements GetDataInt
     public HashMap<String, Object> getData() {
         HashMap<String, Object> hashMap = new HashMap<>();
         for (DataGetterFragment fragment : fragments) {
-            for (String key : fragment.getData().keySet()) {
-                hashMap.put(key, fragment.getData().get(key));
+            HashMap<String, Object> hashMap1 = fragment.getData();
+            for (String key : hashMap1.keySet()) {
+                hashMap.put(key, hashMap1.get(key));
             }
         }
         return hashMap;

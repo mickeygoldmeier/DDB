@@ -56,6 +56,7 @@ public class AddParcelMain extends AppCompatActivity {
                 if (isFinished) {
                     HashMap hashMap = parcelAdapter.getData();
                     addParcelToFirebase(convertHashMapToParcel(hashMap));
+                    finish();
                 }
                 try {
                     view_pager.setCurrentItem(view_pager.getCurrentItem() + 1);
