@@ -22,11 +22,13 @@ import java.util.List;
 public class RegisteredPackagesDS {
     static DatabaseReference parcelsRef;
     static List<Parcel> parcelList;
+    static List<String> assS;
 
     static {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         parcelsRef = database.getReference("RegisteredPackages");
         parcelList = new ArrayList<>();
+        assS = new ArrayList<>();
     }
 
 
@@ -115,8 +117,10 @@ public class RegisteredPackagesDS {
             parcelRefChildEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
-                    parcelList.add(parcel);
+                    //Parcel parcel = dataSnapshot.getValue(Parcel.class);
+                    //parcelList.add(parcel);
+                    String ass = dataSnapshot.getKey();
+                    assS.add(ass);
                     notifyDataChange.OnDataChanged(parcelList);
                 }
 
