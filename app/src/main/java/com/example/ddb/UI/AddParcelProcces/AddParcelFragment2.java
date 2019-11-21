@@ -127,11 +127,10 @@ public class AddParcelFragment2 extends DataGetterFragment {
     }
 
     @Override
-    public HashMap<String, Object> getData() {
+    public HashMap<String, Object> getData() throws Exception {
         HashMap<String, Object> hashMap = new HashMap<>();
 
-        switch ((int) parcel_type_spr.getSelectedItemId())
-        {
+        switch ((int) parcel_type_spr.getSelectedItemId()) {
             case 1:
                 Type = Parcel_Type.SmallPackage;
                 break;
@@ -142,10 +141,15 @@ public class AddParcelFragment2 extends DataGetterFragment {
                 Type = Parcel_Type.Envelope;
                 break;
         }
+        try {
 
-        hashMap.put("Fragile", Fragile);
-        hashMap.put("Weight", Weight);
-        hashMap.put("Type", Type);
+
+            hashMap.put("Fragile", Fragile);
+            hashMap.put("Weight", Weight);
+            hashMap.put("Type", Type);
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
         return hashMap;
     }
 }

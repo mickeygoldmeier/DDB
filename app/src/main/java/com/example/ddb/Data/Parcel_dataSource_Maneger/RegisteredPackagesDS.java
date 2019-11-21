@@ -104,11 +104,8 @@ public class RegisteredPackagesDS {
     }
 
     private static ChildEventListener parcelRefChildEventListener;
-}
-    /**
     public static void notifyToParcelList(final NotifyDataChange<List<Parcel>> notifyDataChange) {
         if (notifyDataChange != null) {
-
             if (parcelRefChildEventListener != null) {
                 notifyDataChange.onFailure(new Exception("first unNotify student list"));
                 return;
@@ -171,4 +168,4 @@ public class RegisteredPackagesDS {
             parcelRefChildEventListener = null;
         }
     }
-} **/
+}

@@ -33,10 +33,16 @@ public class AddParcelAdapter extends FragmentPagerAdapter implements GetDataInt
     }
 
     @Override
-    public HashMap<String, Object> getData() {
+    public HashMap<String, Object> getData() throws Exception {
         HashMap<String, Object> hashMap = new HashMap<>();
+        HashMap<String, Object> hashMap1;
         for (DataGetterFragment fragment : fragments) {
-            HashMap<String, Object> hashMap1 = fragment.getData();
+            try {
+                hashMap1 = fragment.getData();
+            }
+            catch (Exception e){
+                throw new Exception(e);
+            }
             for (String key : hashMap1.keySet()) {
                 hashMap.put(key, hashMap1.get(key));
             }

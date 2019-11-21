@@ -120,12 +120,11 @@ public class AddParcelFragment3 extends DataGetterFragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 for (String city : citiesList) {
-                    if (city.equals(editable.toString())){
+                    if (city.equals(editable.toString())) {
                         City = editable.toString();
                         cities_actv.setTextColor(Color.BLACK);
                         break;
-                    }
-                    else
+                    } else
                         cities_actv.setTextColor(Color.RED);
                 }
             }
@@ -135,9 +134,14 @@ public class AddParcelFragment3 extends DataGetterFragment {
     }
 
     @Override
-    public HashMap<String, Object> getData() {
+    public HashMap<String, Object> getData() throws Exception {
         HashMap<String, Object> hashMap = new HashMap<>();
-        Address address = new Address(Country, City, Street, Number);
+        Address address;
+        try {
+            address = new Address(Country, City, Street, Number);
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
         hashMap.put("DistributionCenterAddress", address);
         return hashMap;
     }

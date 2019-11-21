@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.ddb.Data.Action;
+import com.example.ddb.Data.NotifyDataChange;
 import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Parcel;
@@ -22,16 +23,20 @@ import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.R;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class AddParcelMain extends AppCompatActivity {
 
     private boolean isFinished = false;
     private Parcel parcel = new Parcel();
+    private List<Parcel> parcels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         parcel.getIdFromDataBase();
+        getPercelList();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_parcel_main);
 
@@ -61,8 +66,13 @@ public class AddParcelMain extends AppCompatActivity {
                 if (isFinished) {
                     ProgressBar adding_prb = findViewById(R.id.adding_prb);
                     adding_prb.setVisibility(View.VISIBLE);
+
                     next_btn.setVisibility(View.GONE);
-                    HashMap hashMap = parcelAdapter.getData();
+                    HashMap hashMap = new HashMap();
+                    try {
+                        hashMap = parcelAdapter.getData();
+                    }
+                    catch (Exception e){ }
                     try {
                         addParcelToFirebase(convertHashMapToParcel(hashMap));
                     }
@@ -145,5 +155,19 @@ public class AddParcelMain extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getPercelList(){
+        RegisteredPackagesDS.notifyToParcelList(new NotifyDataChange<List<Parcel>>() {
+            @Override
+            public void OnDataChanged(List<Parcel> obj) {
+                parcels = obj;
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+
+            }
+        });
     }
 }
