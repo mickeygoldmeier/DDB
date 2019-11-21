@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ddb.Data.Action;
+import com.example.ddb.Data.NotifyDataChange;
 import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Data.Users;
 import com.example.ddb.Entities.Address;
@@ -24,15 +25,19 @@ import com.example.ddb.R;
 import com.example.ddb.UI.AddParcelProcces.AddParcelMain;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class CompanyMainScreen extends AppCompatActivity {
 
     private Company company;
+    private List<Parcel> parcels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getPercelList();
         setContentView(R.layout.activity_company_main_screen);
 
         // hide the Action Bar and the Status bar
@@ -77,6 +82,7 @@ public class CompanyMainScreen extends AppCompatActivity {
                         })
                         .setNegativeButton(android.R.string.no, null)
                         .show();
+                RegisteredPackagesDS.stopNotifyToParcelList();
             }
         });
 
@@ -86,7 +92,22 @@ public class CompanyMainScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddParcelMain.class);
+                RegisteredPackagesDS.stopNotifyToParcelList();
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void getPercelList(){
+        RegisteredPackagesDS.notifyToParcelList(new NotifyDataChange<List<Parcel>>() {
+            @Override
+            public void OnDataChanged(List<Parcel> obj) {
+                parcels = obj;
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+
             }
         });
     }

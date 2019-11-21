@@ -31,12 +31,11 @@ public class AddParcelMain extends AppCompatActivity {
 
     private boolean isFinished = false;
     private Parcel parcel = new Parcel();
-    private List<Parcel> parcels = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         parcel.getIdFromDataBase();
-        getPercelList();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_parcel_main);
 
@@ -66,17 +65,16 @@ public class AddParcelMain extends AppCompatActivity {
                 if (isFinished) {
                     ProgressBar adding_prb = findViewById(R.id.adding_prb);
                     adding_prb.setVisibility(View.VISIBLE);
-
                     next_btn.setVisibility(View.GONE);
                     HashMap hashMap = new HashMap();
                     try {
                         hashMap = parcelAdapter.getData();
+                    } catch (Exception e) {
                     }
-                    catch (Exception e){ }
                     try {
                         addParcelToFirebase(convertHashMapToParcel(hashMap));
+                    } catch (Exception e) {
                     }
-                   catch (Exception e){}
                 }
                 try {
                     view_pager.setCurrentItem(view_pager.getCurrentItem() + 1);
@@ -122,8 +120,7 @@ public class AddParcelMain extends AppCompatActivity {
             parcel.setWeight((double) hashMap.get("Weight"));
             parcel.setType((Parcel_Type) hashMap.get("Type"));
             parcel.setDistributionCenterAddress((Address) hashMap.get("DistributionCenterAddress"));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new Exception(e);
         }
         return parcel;
@@ -157,17 +154,4 @@ public class AddParcelMain extends AppCompatActivity {
 
     }
 
-    private void getPercelList(){
-        RegisteredPackagesDS.notifyToParcelList(new NotifyDataChange<List<Parcel>>() {
-            @Override
-            public void OnDataChanged(List<Parcel> obj) {
-                parcels = obj;
-            }
-
-            @Override
-            public void onFailure(Exception exception) {
-
-            }
-        });
-    }
 }
