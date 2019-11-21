@@ -63,7 +63,10 @@ public class AddParcelMain extends AppCompatActivity {
                     adding_prb.setVisibility(View.VISIBLE);
                     next_btn.setVisibility(View.GONE);
                     HashMap hashMap = parcelAdapter.getData();
-                    addParcelToFirebase(convertHashMapToParcel(hashMap));
+                    try {
+                        addParcelToFirebase(convertHashMapToParcel(hashMap));
+                    }
+                   catch (Exception e){}
                 }
                 try {
                     view_pager.setCurrentItem(view_pager.getCurrentItem() + 1);
@@ -102,12 +105,17 @@ public class AddParcelMain extends AppCompatActivity {
         Glide.with(this).load(R.drawable.new_parcel_gif).into(gif_iv);
     }
 
-    private Parcel convertHashMapToParcel(HashMap<String, Object> hashMap) {
-        parcel.setFragile((boolean) hashMap.get("Fragile"));
-        parcel.setRecipientPhone((String) hashMap.get("RecipientPhone"));
-        parcel.setWeight((double) hashMap.get("Weight"));
-        parcel.setType((Parcel_Type) hashMap.get("Type"));
-        parcel.setDistributionCenterAddress((Address) hashMap.get("DistributionCenterAddress"));
+    private Parcel convertHashMapToParcel(HashMap<String, Object> hashMap) throws Exception {
+        try {
+            parcel.setFragile((boolean) hashMap.get("Fragile"));
+            parcel.setRecipientPhone((String) hashMap.get("RecipientPhone"));
+            parcel.setWeight((double) hashMap.get("Weight"));
+            parcel.setType((Parcel_Type) hashMap.get("Type"));
+            parcel.setDistributionCenterAddress((Address) hashMap.get("DistributionCenterAddress"));
+        }
+        catch (Exception e){
+            throw new Exception(e);
+        }
         return parcel;
     }
 

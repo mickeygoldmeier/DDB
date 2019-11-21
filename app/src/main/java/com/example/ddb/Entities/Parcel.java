@@ -64,7 +64,9 @@ public class Parcel {
         Fragile = fragile;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(double weight) throws Exception {
+        if(weight <= 0)
+            throw new Exception("weight cant be less or equal to 0");
         Weight = weight;
     }
 
@@ -72,7 +74,9 @@ public class Parcel {
         DistributionCenterAddress = distributionCenterAddress;
     }
 
-    public void setRecipientPhone(String recipientPhone) {
+    public void setRecipientPhone(String recipientPhone) throws Exception {
+        if (!recipientPhone.matches("(((05)|(\\+?(9725)))[0-9]{8})"))
+            throw new Exception("the phone number is not valid");
         RecipientPhone = recipientPhone;
     }
 

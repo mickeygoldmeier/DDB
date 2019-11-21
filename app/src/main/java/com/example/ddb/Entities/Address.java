@@ -1,5 +1,7 @@
 package com.example.ddb.Entities;
 
+import com.example.ddb.Data.CitiesList;
+
 public class Address {
     private String Country;
     private String City;
@@ -9,11 +11,15 @@ public class Address {
     public Address() {
     }
 
-    public Address(String country, String city, String street, int number) {
-        Country = country;
-        City = city;
-        Street = street;
-        Number = number;
+    public Address(String country, String city, String street, int number) throws Exception {
+        setCountry(country);
+        try {
+            setCity(city);
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+        setStreet(street);
+        setNumber(number);
     }
 
     public String getCountry() {
@@ -28,10 +34,18 @@ public class Address {
         return City;
     }
 
-    public void setCity(String city) {
+    public void setCity(String city) throws Exception {
+        boolean flag = false;
+        for (String citie : CitiesList.getCitiesArray()) {
+            if (city == citie) {
+                flag = true;
+                break;
+            }
+        }
+        if (!flag)
+            throw new Exception("the city dose not exist");
         City = city;
     }
-
     public String getStreet() {
         return Street;
     }
@@ -47,4 +61,5 @@ public class Address {
     public void setNumber(int number) {
         Number = number;
     }
+
 }
