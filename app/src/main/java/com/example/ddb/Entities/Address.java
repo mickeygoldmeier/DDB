@@ -36,14 +36,16 @@ public class Address {
 
     public void setCity(String city) throws Exception {
         boolean flag = false;
-        for (String citie : CitiesList.getCitiesArray()) {
-            if (city == citie) {
-                flag = true;
-                break;
+        if (CitiesList.getCitiesArray().length == 0) {
+            for (String citie : CitiesList.getCitiesArray()) {
+                if (city == citie) {
+                    flag = true;
+                    break;
+                }
             }
+            if (!flag)
+                throw new Exception("the city dose not exist");
         }
-        if (!flag)
-            throw new Exception("the city dose not exist");
         City = city;
     }
     public String getStreet() {
