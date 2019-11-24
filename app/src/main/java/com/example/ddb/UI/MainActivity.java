@@ -2,26 +2,17 @@ package com.example.ddb.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.ddb.Data.Action;
 import com.example.ddb.Data.CitiesList;
-import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Data.Users;
-import com.example.ddb.Entities.Address;
-import com.example.ddb.Entities.Parcel;
-import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
 
@@ -36,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         // update the cities list
         CitiesList.UpdateCitiesList();
+
 
         // hide the Action Bar and the Status bar
         try {
@@ -87,6 +79,5 @@ public class MainActivity extends AppCompatActivity {
             number = number.replaceFirst("05", "+9725");
         return number;
     }
-
 
 }

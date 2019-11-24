@@ -1,11 +1,20 @@
 package com.example.ddb.Data;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.Locale;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -60,4 +69,5 @@ public class CitiesList {
             arr[i] = CitiesList.get(i);
         return arr;
     }
+
 }
