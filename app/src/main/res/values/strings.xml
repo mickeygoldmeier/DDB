@@ -28,4 +28,6 @@
     <string name="parcel_data">What do you have there?</string>
     <string name="enter_the_parcel_data">Lets play a little guessing game...</string>
     <string name="parcel_added">The parcel is now registered!</string>
+    <string name="no_internet_connection">Where are you? It\'s look like you dont have internet connection</string>
+    <string name="try_agian_later">Should we try agian later?</string>
 </resources>
