@@ -115,8 +115,11 @@ public class RegisteredPackagesDS {
             parcelRefChildEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    String phone = dataSnapshot.getKey();
-                    notifyToParcelList_help(notifyDataChange, phone);
+                    for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
+                        Parcel parcel = uniqueKeySnapshot.getValue(Parcel.class);
+                        parcelList.add(parcel);
+                    }
+                    notifyDataChange.OnDataChanged(parcelList);
                 }
 
                 @Override
@@ -158,65 +161,6 @@ public class RegisteredPackagesDS {
                 }
             };
             parcelsRef.addChildEventListener(parcelRefChildEventListener);
-        }
-    }
-
-    private static ChildEventListener parcelRefChildEventListener_help;
-    private static void notifyToParcelList_help(final NotifyDataChange<List<Parcel>> notifyDataChange, String key ) {
-        if (notifyDataChange != null) {
-            if (parcelRefChildEventListener != null) {
-                notifyDataChange.onFailure(new Exception("first unNotify student list"));
-                return;
-            }
-            parcelList.clear();
-
-            parcelRefChildEventListener = new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
-                    parcelList.add(parcel);
-                    notifyDataChange.OnDataChanged(parcelList);
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
-                    String parcelid = dataSnapshot.getKey();
-
-
-                    for (int i = 0; i < parcelList.size(); i++) {
-                        if (parcelList.get(i).getParcelID().equals(parcelid)) {
-                            parcelList.set(i, parcel);
-                            break;
-                        }
-                    }
-                    notifyDataChange.OnDataChanged(parcelList);
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
-                    String parcelid = dataSnapshot.getKey();
-
-                    for (int i = 0; i < parcelList.size(); i++) {
-                        if (parcelList.get(i).getParcelID() == parcelid) {
-                            parcelList.remove(i);
-                            break;
-                        }
-                    }
-                    notifyDataChange.OnDataChanged(parcelList);
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    notifyDataChange.onFailure(databaseError.toException());
-                }
-            };
-            parcelsRef.child(key).addChildEventListener(parcelRefChildEventListener_help);
         }
     }
 

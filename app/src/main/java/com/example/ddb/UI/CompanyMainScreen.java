@@ -104,7 +104,8 @@ public class CompanyMainScreen extends AppCompatActivity {
             public void OnDataChanged(List<Parcel> obj) {
 
                 for (Parcel parcel:obj) {
-                    parcels.add(parcel);
+                    if(!parcels.contains(parcel))
+                        parcels.add(parcel);
                 }
             }
 
