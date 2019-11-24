@@ -1,12 +1,8 @@
 package com.example.ddb.Data;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
+import android.content.Intent;
+import com.example.ddb.UI.NoInternetConnection;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -14,24 +10,25 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.LinkedList;
-import java.util.Locale;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class CitiesList {
     private static LinkedList<String> CitiesList;
 
-    public static void UpdateCitiesList() {
+    public static void UpdateCitiesList(final Context context) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                InitUpdateCitiesList();
+                InitUpdateCitiesList(context);
             }
         });
         thread.start();
     }
 
-    private static void InitUpdateCitiesList() {
+    private static void InitUpdateCitiesList(Context context) {
         try {
             // set up the URL and the Streams
             URL url = new URL("https://data.gov.il/dataset/3fc54b81-25b3-4ac7-87db-248c3e1602de/resource/d4901968-dad3-4845-a9b0-a57d027f11ab/download/yeshuvim_20190401.txt");
@@ -59,7 +56,9 @@ public class CitiesList {
             httpURLConnection.disconnect();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Intent i = new Intent(context, NoInternetConnection.class);
+            i.setFlags(FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
         }
     }
 

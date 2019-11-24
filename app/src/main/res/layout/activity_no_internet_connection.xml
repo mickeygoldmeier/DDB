@@ -7,24 +7,36 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="#FFFFFF"
-    tools:context=".NoInternetConnection">
+    tools:context=".UI.NoInternetConnection">
 
     <ImageView
-        android:id="@+id/gif2_iv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/gif_no_internet_iv"
+        android:layout_width="120pt"
+        android:layout_height="120pt"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:srcCompat="@drawable/add_pacel_done" />
+        app:srcCompat="@drawable/no_connection" />
 
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="@string/parcel_added"
+        android:text="@string/no_internet_connection"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center"
         android:textStyle="bold"
-        android:paddingTop="20dp"
         android:textSize="25sp"/>
 
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/try_agian_later"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center"
+        android:textSize="20sp"/>
+
     <Button
+        android:id="@+id/no_internet_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

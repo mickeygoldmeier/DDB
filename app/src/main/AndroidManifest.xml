@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NoInternetConnection"></activity>
+        <activity android:name=".UI.NoInternetConnection"></activity>
         <activity android:name=".UI.AddParcelProcces.AddParcelDoneScreen" />
         <activity android:name=".UI.AddParcelProcces.AddParcelMain" />
         <activity android:name=".UI.CompanyMainScreen" />

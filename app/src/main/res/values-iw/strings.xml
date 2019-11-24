@@ -26,4 +26,6 @@
     <string name="parcel_data">מה יש לך שם?</string>
     <string name="enter_the_parcel_data">בוא נשחק משחק ניחושים קטן...</string>
     <string name="parcel_added">החבילה רשומה עכשיו!</string>
+    <string name="no_internet_connection">איפה אתה? נראה לנו שאין לך חיבור לאינטרנט</string>
+    <string name="try_agian_later">שננסה שוב מאוחר יותר?</string>
 </resources>

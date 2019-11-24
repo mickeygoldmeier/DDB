@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // update the cities list
-        CitiesList.UpdateCitiesList();
+        CitiesList.UpdateCitiesList(getApplicationContext());
 
 
         // hide the Action Bar and the Status bar
