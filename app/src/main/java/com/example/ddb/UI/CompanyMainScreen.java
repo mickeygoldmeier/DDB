@@ -102,11 +102,7 @@ public class CompanyMainScreen extends AppCompatActivity {
         RegisteredPackagesDS.notifyToParcelList(new NotifyDataChange<List<Parcel>>() {
             @Override
             public void OnDataChanged(List<Parcel> obj) {
-
-                for (Parcel parcel:obj) {
-                    if(!parcels.contains(parcel))
-                        parcels.add(parcel);
-                }
+                parcels = obj;
             }
 
             @Override
