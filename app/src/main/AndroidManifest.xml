@@ -3,7 +3,7 @@
     package="com.example.ddb">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.AddParcelProcces.AddParcelDoneScreen"></activity>
+        <activity android:name=".NoInternetConnection"></activity>
+        <activity android:name=".UI.AddParcelProcces.AddParcelDoneScreen" />
         <activity android:name=".UI.AddParcelProcces.AddParcelMain" />
         <activity android:name=".UI.CompanyMainScreen" />
         <activity android:name=".UI.MainActivity">
