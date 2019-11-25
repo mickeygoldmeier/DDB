@@ -17,7 +17,7 @@ public class Users {
     private RegisteredPackagesDS registeredPackagesDS;
 
     public static User getUser(String id) throws Exception {
-        UsersList.add(new Company("123", "123", Calendar.getInstance(), new Address(), "my company 1"));
+        UsersList.add(new Company("123", "123", Calendar.getInstance(), new Address(), "איציק משלוחים"));
         UsersList.add(new Company("321", "123", Calendar.getInstance(), new Address(), "my company 2"));
         UsersList.add(new Company("1234", "123", Calendar.getInstance(), new Address(), "my company 3"));
 

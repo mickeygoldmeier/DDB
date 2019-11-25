@@ -13,10 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.NoInternetConnection"></activity>
+        <activity
+            android:name=".UI.MainScreenCompany"
+            android:label="@string/title_activity_main_screen_company"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".UI.NoInternetConnection" />
         <activity android:name=".UI.AddParcelProcces.AddParcelDoneScreen" />
         <activity android:name=".UI.AddParcelProcces.AddParcelMain" />
-        <activity android:name=".UI.CompanyMainScreen" />
         <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
