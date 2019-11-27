@@ -81,7 +81,7 @@ public class MainScreenCompany extends AppCompatActivity {
         TextView hello_tv = findViewById(R.id.hello_tv);
         hello_tv.setText(blessings[new Random().nextInt((blessings.length))]);
 
-        // set up the recycle view
+        // set up the recycle view of the parcels
         parcelRecyclerView = findViewById(R.id.parcel_list_rv);
         parcelRecyclerView.setHasFixedSize(true);
         parcelRecyclerView.setLayoutManager(new LinearLayoutManager(this));
