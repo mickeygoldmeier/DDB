@@ -121,4 +121,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="envelope_">Envelope</string>
+    <string name="small_package_">Small Package</string>
+    <string name="large_package_">Large Package</string>
 </resources>

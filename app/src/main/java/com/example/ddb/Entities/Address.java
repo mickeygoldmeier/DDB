@@ -64,4 +64,10 @@ public class Address {
         Number = number;
     }
 
+    @Override
+    public String toString()
+    {
+        return Street + " " + Number + ", " + City;
+    }
+
 }

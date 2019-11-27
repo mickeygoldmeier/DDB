@@ -13,14 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UI.ParcelViewHolder" android:screenOrientation="portrait"></activity>
         <activity
             android:name=".UI.MainScreenCompany"
             android:label="@string/title_activity_main_screen_company"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".UI.NoInternetConnection" />
-        <activity android:name=".UI.AddParcelProcces.AddParcelDoneScreen" />
-        <activity android:name=".UI.AddParcelProcces.AddParcelMain" />
-        <activity android:name=".UI.MainActivity">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UI.NoInternetConnection" android:screenOrientation="portrait" />
+        <activity android:name=".UI.AddParcelProcces.AddParcelDoneScreen" android:screenOrientation="portrait" />
+        <activity android:name=".UI.AddParcelProcces.AddParcelMain" android:screenOrientation="portrait" />
+        <activity android:name=".UI.MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
