@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         CitiesList.UpdateCitiesList(getApplicationContext());
 
         // add the image to the back
-        try {
+        /**try {
             String url = "https://images.unsplash.com/photo-1498036882173-b41c28a8ba34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=60";
             Glide.with(this)
                     .load(url)
@@ -69,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
                     });
         } catch (Exception e) {
 
-        }
+        }**/
+        WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
+        findViewById(R.id.main_activity_ll).setBackground(wallpaperManager.getDrawable());
 
 
         // hide the Action Bar and the Status bar
