@@ -71,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }**/
-        WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
-        findViewById(R.id.main_activity_ll).setBackground(wallpaperManager.getDrawable());
-
+        try {
+            WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
+            findViewById(R.id.main_activity_ll).setBackground(wallpaperManager.getDrawable());
+        }
+        catch (Exception e){}
 
         // hide the Action Bar and the Status bar
         try {

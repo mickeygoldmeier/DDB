@@ -95,10 +95,10 @@ public class MainScreenCompany extends AppCompatActivity {
             public void OnDataChanged(List<Parcel> obj) {
                 if (parcelRecyclerView.getAdapter() == null) {
                     for (Parcel parcel:obj) {
-                        if (parcel.getCompanyID()==company.getUserID())
+                        if (parcel.getCompanyID().equals(company.getUserID()))
                             parcels.add(parcel);
                     }
-                    parcels = obj;
+
                     parcelRecyclerView.setAdapter(new ParcelRecycleViewAdapter());
                 } else parcelRecyclerView.getAdapter().notifyDataSetChanged();
             }
