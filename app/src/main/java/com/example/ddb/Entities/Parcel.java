@@ -15,19 +15,32 @@ public class Parcel {
     private Address DistributionCenterAddress;
     private String RecipientPhone;
     private String ParcelID;
+    private String CompanyID;
 
     public Parcel() {
     }
 
-    public Parcel(Parcel_Type type, boolean fragile, double weight, Address distributionCenterAddress, String recipientPhone, String parcelID) {
+
+
+    public Parcel(Parcel_Type type, boolean fragile, double weight, Address distributionCenterAddress, String recipientPhone, String parcelID, String companyID) {
         Type = type;
         Fragile = fragile;
         Weight = weight;
         DistributionCenterAddress = distributionCenterAddress;
         RecipientPhone = recipientPhone;
         ParcelID = parcelID;
+        CompanyID = companyID;
     }
 
+
+
+    public String getCompanyID() {
+        return CompanyID;
+    }
+
+    public void setCompanyID(String companyID) {
+        CompanyID = companyID;
+    }
     public Parcel_Type getType() {
         return Type;
     }

@@ -43,9 +43,13 @@ import java.util.Random;
 
 public class MainScreenCompany extends AppCompatActivity {
 
-    private Company company;
+    static private Company company;
     private List<Parcel> parcels = new ArrayList<>();
     private RecyclerView parcelRecyclerView;
+
+    static public Company getCompany(){
+        return company;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,7 @@ public class MainScreenCompany extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         // set the company name
         try {
@@ -90,6 +95,10 @@ public class MainScreenCompany extends AppCompatActivity {
             @Override
             public void OnDataChanged(List<Parcel> obj) {
                 if (parcelRecyclerView.getAdapter() == null) {
+                    for (Parcel parcel:obj) {
+                        if (parcel.getCompanyID()==company.getUserID())
+                            parcels.add(parcel);
+                    }
                     parcels = obj;
                     parcelRecyclerView.setAdapter(new ParcelRecycleViewAdapter());
                 } else parcelRecyclerView.getAdapter().notifyDataSetChanged();

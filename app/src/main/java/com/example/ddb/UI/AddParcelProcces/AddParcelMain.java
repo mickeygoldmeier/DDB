@@ -7,6 +7,7 @@ import com.example.ddb.Data.Action;
 import com.example.ddb.Data.NotifyDataChange;
 import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Entities.Address;
+import com.example.ddb.Entities.Company;
 import com.example.ddb.Entities.Parcel;
 
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.R;
+import com.example.ddb.UI.MainScreenCompany;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
 import java.util.ArrayList;
@@ -120,6 +122,7 @@ public class AddParcelMain extends AppCompatActivity {
             parcel.setWeight((double) hashMap.get("Weight"));
             parcel.setType((Parcel_Type) hashMap.get("Type"));
             parcel.setDistributionCenterAddress((Address) hashMap.get("DistributionCenterAddress"));
+            parcel.setCompanyID(MainScreenCompany.getCompany().getUserID());
         } catch (Exception e) {
             throw new Exception(e);
         }
