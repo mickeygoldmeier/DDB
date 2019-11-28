@@ -122,7 +122,7 @@ public class AddParcelMain extends AppCompatActivity {
             parcel.setWeight((double) hashMap.get("Weight"));
             parcel.setType((Parcel_Type) hashMap.get("Type"));
             parcel.setDistributionCenterAddress((Address) hashMap.get("DistributionCenterAddress"));
-            parcel.setCompanyID(MainScreenCompany.getCompany().getUserID());
+            parcel.setCompanyID(getIntent().getExtras().getString("company_id"));
         } catch (Exception e) {
             throw new Exception(e);
         }

@@ -43,13 +43,11 @@ import java.util.Random;
 
 public class MainScreenCompany extends AppCompatActivity {
 
-    static private Company company;
+    private Company company;
     private List<Parcel> parcels = new ArrayList<>();
     private RecyclerView parcelRecyclerView;
 
-    static public Company getCompany(){
-        return company;
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +64,7 @@ public class MainScreenCompany extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddParcelMain.class);
                 RegisteredPackagesDS.stopNotifyToParcelList();
+                intent.putExtra("company_id", company.getUserID());
                 startActivity(intent);
             }
         });
