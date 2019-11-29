@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.ddb.Data.Action;
-import com.example.ddb.Data.NotifyDataChange;
 import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Entities.Address;
-import com.example.ddb.Entities.Company;
 import com.example.ddb.Entities.Parcel;
 
 import android.content.Intent;
@@ -17,17 +15,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.R;
-import com.example.ddb.UI.MainScreenCompany;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class AddParcelMain extends AppCompatActivity {
 
@@ -79,6 +73,7 @@ public class AddParcelMain extends AppCompatActivity {
                     }
                 }
                 try {
+
                     view_pager.setCurrentItem(view_pager.getCurrentItem() + 1);
                     if (view_pager.getCurrentItem() == parcelAdapter.getCount() - 1)
                         isFinished = true;

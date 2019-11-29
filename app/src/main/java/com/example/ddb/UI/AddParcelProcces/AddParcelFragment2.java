@@ -143,7 +143,6 @@ public class AddParcelFragment2 extends DataGetterFragment {
         }
         try {
 
-
             hashMap.put("Fragile", Fragile);
             hashMap.put("Weight", Weight);
             hashMap.put("Type", Type);

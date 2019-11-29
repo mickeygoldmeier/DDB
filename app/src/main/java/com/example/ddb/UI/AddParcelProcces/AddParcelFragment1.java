@@ -72,6 +72,7 @@ public class AddParcelFragment1 extends DataGetterFragment {
     public HashMap<String, Object> getData() throws Exception{
         HashMap<String, Object> hashMap = new HashMap<>();
         try {
+
             hashMap.put("RecipientPhone", RecipientPhone);
         }
         catch (Exception e){

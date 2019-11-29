@@ -6,10 +6,8 @@ import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Company;
 import com.example.ddb.Entities.Parcel;
-import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.Entities.User;
 
-import java.util.Date;
 import java.util.LinkedList;
 
 public class Users {
