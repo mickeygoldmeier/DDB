@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import com.example.ddb.Data.Action;
 import com.example.ddb.Data.NotifyDataChange;
 
+import com.example.ddb.Entities.Company;
+import com.example.ddb.Entities.Person;
 import com.example.ddb.Entities.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -103,34 +105,39 @@ public class UsersDS {
         });
     }
 
-    private static ChildEventListener parcelRefChildEventListener;
-    public static void notifyToParcelList(final NotifyDataChange<List<Parcel>> notifyDataChange) {
+ **/
+    private static ChildEventListener userRefChildEventListener;
+    public static void notifyToParcelList(final NotifyDataChange<List<User>> notifyDataChange) {
         if (notifyDataChange != null) {
-            if (parcelRefChildEventListener != null) {
+            if (userRefChildEventListener != null) {
                 notifyDataChange.onFailure(new Exception("first unNotify student list"));
                 return;
             }
             userList.clear();
 
-            parcelRefChildEventListener = new ChildEventListener() {
+            userRefChildEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
-                        Parcel parcel = uniqueKeySnapshot.getValue(Parcel.class);
-                        userList.add(parcel);
+                    User user;
+                    try {
+                        user = dataSnapshot.getValue(Person.class);
+                    } catch (Exception e) {
+                        user = dataSnapshot.getValue(Company.class);
                     }
+
+                    userList.add(user);
                     notifyDataChange.OnDataChanged(userList);
                 }
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
+                    User user = dataSnapshot.getValue(User.class);
                     String parcelid = dataSnapshot.getKey();
 
 
                     for (int i = 0; i < userList.size(); i++) {
-                        if (userList.get(i).getParcelID().equals(parcelid)) {
-                            userList.set(i, parcel);
+                        if (userList.get(i).getUserID().equals(parcelid)) {
+                            userList.set(i, user);
                             break;
                         }
                     }
@@ -139,11 +146,11 @@ public class UsersDS {
 
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
+                    User user = dataSnapshot.getValue(User.class);
                     String parcelid = dataSnapshot.getKey();
 
                     for (int i = 0; i < userList.size(); i++) {
-                        if (userList.get(i).getParcelID() == parcelid) {
+                        if (userList.get(i).getUserID() == parcelid) {
                             userList.remove(i);
                             break;
                         }
@@ -160,15 +167,15 @@ public class UsersDS {
                     notifyDataChange.onFailure(databaseError.toException());
                 }
             };
-            usersRef.addChildEventListener(parcelRefChildEventListener);
+            usersRef.addChildEventListener(userRefChildEventListener);
         }
     }
 
-    public static void stopNotifyToParcelList() {
-        if (parcelRefChildEventListener != null) {
-            usersRef.removeEventListener(parcelRefChildEventListener);
-            parcelRefChildEventListener = null;
+
+    public static void stopNotifyToUserList() {
+        if (userRefChildEventListener != null) {
+            usersRef.removeEventListener(userRefChildEventListener);
+            userRefChildEventListener = null;
         }
     }
- **/
 }

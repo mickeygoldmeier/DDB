@@ -30,13 +30,19 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.example.ddb.Data.Action;
 import com.example.ddb.Data.CitiesList;
 import com.example.ddb.Data.GPSLocation;
+import com.example.ddb.Data.NotifyDataChange;
+import com.example.ddb.Data.User_dataSource_Maneger.UsersDS;
 import com.example.ddb.Data.Users;
+import com.example.ddb.Entities.Company;
+import com.example.ddb.Entities.Person;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -48,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     // Define a listener that responds to location updates
     LocationListener locationListener;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         // update the cities list
         CitiesList.UpdateCitiesList(getApplicationContext());
+
+
 
         // add the image to the back
         /**try {
