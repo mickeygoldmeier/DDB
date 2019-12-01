@@ -1,7 +1,7 @@
 package com.example.ddb.Entities;
 
 import java.util.Calendar;
-
+import com.example.ddb.Entities.Address;
 public class Person extends User {
     private String FirstName;
     private String LastName;
@@ -9,7 +9,7 @@ public class Person extends User {
     public Person() {
     }
 
-    public Person(String userID, String password, Calendar lastModified, com.example.ddb.Entities.Address address, String firstName, String lastName) {
+    public Person(String userID, String password, Calendar lastModified, Address address, String firstName, String lastName) {
         super(userID, password, lastModified, address);
         FirstName = firstName;
         LastName = lastName;

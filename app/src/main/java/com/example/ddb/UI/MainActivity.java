@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    private List<User> users;
 
     // Acquire a reference to the system Location Manager
     LocationManager locationManager;
@@ -55,11 +56,23 @@ public class MainActivity extends AppCompatActivity {
     LocationListener locationListener;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        UsersDS.notifyToParcelList(new NotifyDataChange<List<User>>() {
+            @Override
+            public void OnDataChanged(List<User> obj) {
+                users = obj;
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+
+            }
+        });
         // update the cities list
         CitiesList.UpdateCitiesList(getApplicationContext());
 
@@ -116,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    User user = Users.getUser(normalizePhoneNumber(id_ed.getText().toString()));
+                    User user = getUser(normalizePhoneNumber(id_ed.getText().toString()));
 
                     Intent i = new Intent(getApplicationContext(), MainScreenCompany.class);
                     i.putExtra("userID", user.getUserID());
@@ -216,6 +229,13 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Until you grant the permission, we canot display the location", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public User getUser(String id) throws Exception {
+        for (User user : users)
+            if (user.getUserID().equals(id))
+                return user;
+        throw new Exception();
     }
 
 }
