@@ -2,9 +2,11 @@ package com.example.ddb.UI.AddParcelProcces;
 
 
 import android.graphics.Color;
+import android.opengl.Visibility;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,9 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import com.example.ddb.Data.CitiesList;
+import com.example.ddb.Data.GPSLocation;
 import com.example.ddb.Entities.Address;
 import com.example.ddb.R;
 
@@ -30,6 +35,7 @@ public class AddParcelFragment3 extends DataGetterFragment {
     private static String City;
     private static String Street;
     private static int Number;
+    private GPSLocation gpsLocation;
 
     public AddParcelFragment3() {
         // Required empty public constructor
@@ -65,7 +71,7 @@ public class AddParcelFragment3 extends DataGetterFragment {
             }
         });
 
-        EditText street_et = view.findViewById(R.id.street_et);
+        final EditText street_et = view.findViewById(R.id.street_et);
         street_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -104,13 +110,51 @@ public class AddParcelFragment3 extends DataGetterFragment {
                 for (String city : citiesList) {
                     if (city.equals(editable.toString())) {
                         City = editable.toString();
-                        cities_actv.setTextColor(Color.BLACK);
+                        if(cities_actv.isEnabled())
+                            cities_actv.setTextColor(Color.BLACK);
+                        else
+                            cities_actv.setTextColor(Color.LTGRAY);
                         break;
                     } else
                         cities_actv.setTextColor(Color.RED);
                 }
             }
         });
+
+
+        cities_actv.setDropDownHeight(0);
+        cities_actv.setTextColor(Color.LTGRAY);
+        gpsLocation = new GPSLocation();
+        gpsLocation.setUp(cities_actv, street_et, home_number_et, getContext());
+
+        Switch find_GPS_auto_swc = view.findViewById(R.id.find_GPS_auto_swc);
+        find_GPS_auto_swc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                cities_actv.setEnabled(!b);
+                street_et.setEnabled(!b);
+                home_number_et.setEnabled(!b);
+
+                if(b)
+                {
+                    cities_actv.setDropDownHeight(0);
+                    cities_actv.setTextColor(Color.LTGRAY);
+                    gpsLocation = new GPSLocation();
+                    gpsLocation.setUp(cities_actv, street_et, home_number_et, getContext());
+                }
+                else
+                {
+                    cities_actv.setDropDownHeight(ViewPager.LayoutParams.WRAP_CONTENT);
+                    cities_actv.setTextColor(Color.BLACK);
+                    gpsLocation.stopListeners();
+                    gpsLocation = null;
+                }
+            }
+        });
+
+
+
+
 
         return view;
     }

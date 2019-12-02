@@ -32,6 +32,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.ddb.Data.Action;
 import com.example.ddb.Data.CitiesList;
+import com.example.ddb.Data.Config_dataSource_Maneger.ConfigDS;
 import com.example.ddb.Data.GPSLocation;
 import com.example.ddb.Data.NotifyDataChange;
 import com.example.ddb.Data.User_dataSource_Maneger.UsersDS;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     // Define a listener that responds to location updates
     LocationListener locationListener;
 
-
+    Button GPSbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // add the image to the back
-        /**try {
+        try {
             String url = "https://images.unsplash.com/photo-1498036882173-b41c28a8ba34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=60";
             Glide.with(this)
                     .load(url)
@@ -92,12 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     });
         } catch (Exception e) {
 
-        }**/
-        try {
-            WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
-            findViewById(R.id.main_activity_ll).setBackground(wallpaperManager.getDrawable());
         }
-        catch (Exception e){}
 
         // hide the Action Bar and the Status bar
         try {
@@ -143,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        GPSbtn = findViewById(R.id.tempGPS);
         setUp();
-        Button tempGPS = findViewById(R.id.tempGPS);
-        tempGPS.setOnClickListener(new View.OnClickListener() {
+        GPSbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getLocation();
@@ -169,9 +165,8 @@ public class MainActivity extends AppCompatActivity {
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
                 // Toast.makeText(getBaseContext(), location.toString(), Toast.LENGTH_LONG).show();
-                Button btn = findViewById(R.id.tempGPS);
-                btn.setText(getPlace(location));
-                Toast.makeText(getBaseContext(), getPlace(location), Toast.LENGTH_LONG);
+                GPSbtn.setText(getPlace(location));
+                Toast.makeText(getApplicationContext(), getPlace(location), Toast.LENGTH_LONG);
             }
 
             @Override
@@ -196,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 5);
         } else {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
         }
     }
 
@@ -209,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 String cityName = addresses.get(0).getAddressLine(0);
                 String stateName = addresses.get(0).getAddressLine(1);
                 String countryName = addresses.get(0).getAddressLine(2);
-                return stateName + "\n" + cityName + "\n" + countryName;
+                return cityName;
             }
             return "no place: \n (" + location.getLongitude() + " , " + location.getLatitude() + ")";
         } catch (IOException e) {
@@ -224,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 5) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission is granted
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
             }
         } else {
             Toast.makeText(getApplicationContext(), "Until you grant the permission, we canot display the location", Toast.LENGTH_SHORT).show();
