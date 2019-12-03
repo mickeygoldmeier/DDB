@@ -29,7 +29,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="20pt"
+        android:id="@+id/gps_is_on_ll"
         android:gravity="center">
 
         <Switch
@@ -43,8 +44,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="תחליטו לבד איפה אני"/>
-
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20pt"
+        android:id="@+id/gps_is_off_ll"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location_off"
+            android:padding="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF003A"
+            android:text="@string/gps_is_off"/>
+    </LinearLayout>
+
 
     <AutoCompleteTextView
         android:id="@+id/cities_actv"

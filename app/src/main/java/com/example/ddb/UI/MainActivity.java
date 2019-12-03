@@ -51,13 +51,6 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private List<User> users;
 
-    // Acquire a reference to the system Location Manager
-    LocationManager locationManager;
-    // Define a listener that responds to location updates
-    LocationListener locationListener;
-
-    Button GPSbtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         // update the cities list
         CitiesList.UpdateCitiesList(getApplicationContext());
-
 
 
         // add the image to the back
@@ -139,15 +132,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        GPSbtn = findViewById(R.id.tempGPS);
-        setUp();
-        GPSbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getLocation();
-            }
-        });
-
     }
 
     private String normalizePhoneNumber(String number) {
@@ -156,75 +140,6 @@ public class MainActivity extends AppCompatActivity {
         return number;
     }
 
-
-    /////////////////////////////////////////////////////////////////////////
-    private void setUp() {
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                // Called when a new location is found by the network location provider.
-                // Toast.makeText(getBaseContext(), location.toString(), Toast.LENGTH_LONG).show();
-                GPSbtn.setText(getPlace(location));
-                Toast.makeText(getApplicationContext(), getPlace(location), Toast.LENGTH_LONG);
-            }
-
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String s) {
-
-            }
-        };
-    }
-
-    public void getLocation() {
-        //     Check the SDK version and whether the permission is already granted or not.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 5);
-        } else {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-        }
-    }
-
-    public String getPlace(Location location) {
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        List<Address> addresses = null;
-        try {
-            addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            if (addresses.size() > 0) {
-                String cityName = addresses.get(0).getAddressLine(0);
-                String stateName = addresses.get(0).getAddressLine(1);
-                String countryName = addresses.get(0).getAddressLine(2);
-                return cityName;
-            }
-            return "no place: \n (" + location.getLongitude() + " , " + location.getLatitude() + ")";
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "IOException ...";
-    }
-
-    @SuppressLint("MissingPermission")
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == 5) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission is granted
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-            }
-        } else {
-            Toast.makeText(getApplicationContext(), "Until you grant the permission, we canot display the location", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     public User getUser(String id) throws Exception {
         for (User user : users)

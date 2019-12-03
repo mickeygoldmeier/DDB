@@ -31,4 +31,5 @@
     <string name="envelope_">מעטפה</string>
     <string name="small_package_">חבילה קטנה</string>
     <string name="large_package_">חבילה גדולה</string>
+    <string name="gps_is_off">הGPS שלך כבוי. אם תדליק אותו נוכל לזהות לבד איפה אתה.</string>
 </resources>

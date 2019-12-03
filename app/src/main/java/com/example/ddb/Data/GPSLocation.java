@@ -7,6 +7,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -14,10 +15,16 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -32,12 +39,16 @@ public class GPSLocation extends Activity implements LocationListener {
     private EditText street;
     private EditText number;
     private Context context;
+    private LinearLayout GPSon;
+    private LinearLayout GPSoff;
 
-    public void setUp(EditText _city, EditText _street, EditText _number, Context _context) {
+    public void setUp(EditText _city, EditText _street, EditText _number, Context _context, LinearLayout _GPSon, LinearLayout _GPSoff) {
         city = _city;
         street = _street;
         number = _number;
         context = _context;
+        GPSon = _GPSon;
+        GPSoff = _GPSoff;
 
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
@@ -111,17 +122,41 @@ public class GPSLocation extends Activity implements LocationListener {
 
     @Override
     public void onProviderEnabled(String s) {
-
+        GPSon.setVisibility(View.VISIBLE);
+        GPSoff.setVisibility(View.GONE);
+        changeEditTextState(true);
     }
 
     @Override
     public void onProviderDisabled(String s) {
-
+        GPSon.setVisibility(View.GONE);
+        GPSoff.setVisibility(View.VISIBLE);
+        changeEditTextState(false);
     }
 
+    // Stop the inner listeners to avoid too much listeners
     public void stopListeners()
     {
         locationManager.removeUpdates(this);
         locationManager = null;
+    }
+
+    // Change the enabled state of the inner EditTexts
+    public void changeEditTextState(boolean enabled)
+    {
+        city.setEnabled(!enabled);
+        street.setEnabled(!enabled);
+        number.setEnabled(!enabled);
+
+        if(enabled)
+        {
+            ((AutoCompleteTextView)city).setDropDownHeight(0);
+            ((AutoCompleteTextView)city).setTextColor(Color.LTGRAY);
+        }
+        else
+        {
+            ((AutoCompleteTextView)city).setDropDownHeight(ViewPager.LayoutParams.WRAP_CONTENT);
+            ((AutoCompleteTextView)city).setTextColor(Color.BLACK);
+        }
     }
 }

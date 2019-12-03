@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import com.example.ddb.Data.CitiesList;
@@ -122,38 +123,32 @@ public class AddParcelFragment3 extends DataGetterFragment {
         });
 
 
+        final Switch find_GPS_auto_swc = view.findViewById(R.id.find_GPS_auto_swc);
+        final LinearLayout GPSon = (LinearLayout) view.findViewById(R.id.gps_is_on_ll);
+        final LinearLayout GPSoff = (LinearLayout)view.findViewById(R.id.gps_is_off_ll);
+
         cities_actv.setDropDownHeight(0);
         cities_actv.setTextColor(Color.LTGRAY);
         gpsLocation = new GPSLocation();
-        gpsLocation.setUp(cities_actv, street_et, home_number_et, getContext());
+        gpsLocation.setUp(cities_actv, street_et, home_number_et, getContext(), GPSon, GPSoff);
 
-        Switch find_GPS_auto_swc = view.findViewById(R.id.find_GPS_auto_swc);
         find_GPS_auto_swc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                cities_actv.setEnabled(!b);
-                street_et.setEnabled(!b);
-                home_number_et.setEnabled(!b);
-
                 if(b)
                 {
-                    cities_actv.setDropDownHeight(0);
-                    cities_actv.setTextColor(Color.LTGRAY);
                     gpsLocation = new GPSLocation();
-                    gpsLocation.setUp(cities_actv, street_et, home_number_et, getContext());
+                    gpsLocation.setUp(cities_actv, street_et, home_number_et, getContext(), GPSon, GPSoff);
+                    gpsLocation.changeEditTextState(true);
                 }
                 else
                 {
-                    cities_actv.setDropDownHeight(ViewPager.LayoutParams.WRAP_CONTENT);
-                    cities_actv.setTextColor(Color.BLACK);
+                    gpsLocation.changeEditTextState(false);
                     gpsLocation.stopListeners();
                     gpsLocation = null;
                 }
             }
         });
-
-
-
 
 
         return view;

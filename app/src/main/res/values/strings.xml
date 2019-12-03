@@ -124,4 +124,5 @@
     <string name="envelope_">Envelope</string>
     <string name="small_package_">Small Package</string>
     <string name="large_package_">Large Package</string>
+    <string name="gps_is_off">Your GPS is off. Turn it up to let us know where you are automatcally.</string>
 </resources>
