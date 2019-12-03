@@ -107,7 +107,7 @@ public class UsersDS {
 
  **/
     private static ChildEventListener userRefChildEventListener;
-    public static void notifyToParcelList(final NotifyDataChange<List<User>> notifyDataChange) {
+    public static void notifyToUserList(final NotifyDataChange<List<User>> notifyDataChange) {
         if (notifyDataChange != null) {
             if (userRefChildEventListener != null) {
                 notifyDataChange.onFailure(new Exception("first unNotify student list"));

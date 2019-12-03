@@ -52,7 +52,6 @@ public class MainScreenCompany extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddParcelMain.class);
-                RegisteredPackagesDS.stopNotifyToParcelList();
                 intent.putExtra("company_id", company.getUserID());
                 startActivity(intent);
             }
@@ -82,14 +81,16 @@ public class MainScreenCompany extends AppCompatActivity {
         RegisteredPackagesDS.notifyToParcelList(new NotifyDataChange<List<Parcel>>() {
             @Override
             public void OnDataChanged(List<Parcel> obj) {
+                for (Parcel parcel:obj) {
+                    if (parcel.getCompanyID().equals(company.getUserID()))
+                        parcels.add(parcel);
+                }
                 if (parcelRecyclerView.getAdapter() == null) {
-                    for (Parcel parcel:obj) {
-                        if (parcel.getCompanyID().equals(company.getUserID()))
-                            parcels.add(parcel);
-                    }
-
                     parcelRecyclerView.setAdapter(new ParcelRecycleViewAdapter());
-                } else parcelRecyclerView.getAdapter().notifyDataSetChanged();
+                }
+                else {
+                    parcelRecyclerView.getAdapter().notifyDataSetChanged();
+                }
             }
 
             @Override
