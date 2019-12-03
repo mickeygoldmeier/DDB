@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -30,20 +28,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.example.ddb.Data.Action;
 import com.example.ddb.Data.CitiesList;
-import com.example.ddb.Data.Config_dataSource_Maneger.ConfigDS;
-import com.example.ddb.Data.GPSLocation;
 import com.example.ddb.Data.NotifyDataChange;
 import com.example.ddb.Data.User_dataSource_Maneger.UsersDS;
-import com.example.ddb.Data.Users;
-import com.example.ddb.Entities.Company;
-import com.example.ddb.Entities.Person;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -63,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        UsersDS.notifyToParcelList(new NotifyDataChange<List<User>>() {
+        UsersDS.notifyToUserList(new NotifyDataChange<List<User>>() {
             @Override
             public void OnDataChanged(List<User> obj) {
                 users = obj;
@@ -130,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent i = new Intent(getApplicationContext(), MainScreenCompany.class);
                     i.putExtra("userID", user.getUserID());
                     finish();
+                    UsersDS.stopNotifyToUserList();
                     startActivity(i);
 
                 } catch (Exception e) {
