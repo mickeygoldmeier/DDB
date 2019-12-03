@@ -83,7 +83,8 @@ public class MainScreenCompany extends AppCompatActivity {
             public void OnDataChanged(List<Parcel> obj) {
                 for (Parcel parcel:obj) {
                     if (parcel.getCompanyID().equals(company.getUserID()))
-                        parcels.add(parcel);
+                        if (!parcels.contains(parcel))
+                            parcels.add(parcel);
                 }
                 if (parcelRecyclerView.getAdapter() == null) {
                     parcelRecyclerView.setAdapter(new ParcelRecycleViewAdapter());

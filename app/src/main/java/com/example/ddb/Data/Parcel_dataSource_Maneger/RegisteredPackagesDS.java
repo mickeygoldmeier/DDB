@@ -122,16 +122,21 @@ public class RegisteredPackagesDS {
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    Parcel parcel = dataSnapshot.getValue(Parcel.class);
-                    String parcelid = dataSnapshot.getKey();
 
-
-                    for (int i = 0; i < parcelList.size(); i++) {
-                        if (parcelList.get(i).getParcelID().equals(parcelid)) {
-                            parcelList.set(i, parcel);
-                            break;
+                    for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
+                        Parcel parcel = uniqueKeySnapshot.getValue(Parcel.class);
+                        boolean flag = true;
+                        for (int i = 0; i < parcelList.size(); i++) {
+                            if (parcelList.get(i).getParcelID().equals(parcel.getParcelID())) {
+                                parcelList.set(i, parcel);
+                                flag = false;
+                                break;
+                            }
                         }
+                        if (flag)
+                            parcelList.add(parcel);
                     }
+
                     notifyDataChange.OnDataChanged(parcelList);
                 }
 
