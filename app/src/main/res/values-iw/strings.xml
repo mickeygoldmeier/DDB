@@ -32,4 +32,6 @@
     <string name="small_package_">חבילה קטנה</string>
     <string name="large_package_">חבילה גדולה</string>
     <string name="gps_is_off">הGPS שלך כבוי. אם תדליק אותו נוכל לזהות לבד איפה אתה.</string>
+    <string name="where_are_you">איפה אתה?</string>
+    <string name="hope_you_have_room">תבחר מחסן שיש בו מספיק מקום לחבילה שלך...</string>
 </resources>

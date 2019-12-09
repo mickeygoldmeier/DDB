@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00F5F5F5"
-    android:orientation="vertical"
     android:gravity="center|top"
+    android:orientation="vertical"
     android:padding="10pt"
     android:rotationY="180"
     tools:context=".UI.AddParcelProcces.AddParcelFragment3">
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/parcel_data"
+        android:text="@string/where_are_you"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -24,47 +24,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/enter_the_parcel_data"
+        android:text="@string/hope_you_have_room"
         android:textSize="25sp" />
 
     <LinearLayout
+        android:id="@+id/gps_is_on_ll"
         android:layout_width="match_parent"
         android:layout_height="20pt"
-        android:id="@+id/gps_is_on_ll"
         android:gravity="center">
 
         <Switch
+            android:id="@+id/find_GPS_auto_swc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:id="@+id/find_GPS_auto_swc"
-            android:padding="10dp"/>
+            android:padding="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="תחליטו לבד איפה אני"/>
+            android:text="תחליטו לבד איפה אני" />
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/gps_is_off_ll"
         android:layout_width="match_parent"
         android:layout_height="20pt"
-        android:id="@+id/gps_is_off_ll"
-        android:visibility="gone"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_location_off"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            android:src="@drawable/ic_location_off" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF003A"
-            android:text="@string/gps_is_off"/>
+            android:text="@string/gps_is_off"
+            android:textColor="#FF003A" />
     </LinearLayout>
 
 
@@ -72,44 +72,43 @@
         android:id="@+id/cities_actv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="עיר"
-        android:background="@drawable/edit_text_style_light"
-        android:padding="10dp"
-        android:paddingStart="10dp"
-        android:gravity="start"
         android:layout_margin="7dp"
+        android:background="@drawable/edit_text_style_light"
+        android:completionThreshold="1"
+        android:ems="10"
         android:enabled="false"
-        android:completionThreshold="1" />
+        android:gravity="start"
+        android:hint="עיר"
+        android:padding="10dp"
+        android:paddingStart="10dp" />
 
     <EditText
         android:id="@+id/street_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPostalAddress"
-        android:hint="רחוב"
+        android:layout_margin="7dp"
         android:background="@drawable/edit_text_style_light"
-        android:padding="10dp"
-        android:paddingStart="10dp"
-        android:gravity="start"
+        android:ems="10"
         android:enabled="false"
-        android:layout_margin="7dp"/>
+        android:gravity="start"
+        android:hint="רחוב"
+        android:inputType="textPostalAddress"
+        android:padding="10dp"
+        android:paddingStart="10dp" />
 
     <EditText
         android:id="@+id/home_number_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="מספר בית"
+        android:layout_margin="7dp"
         android:background="@drawable/edit_text_style_light"
-        android:padding="10dp"
-        android:paddingStart="10dp"
-        android:gravity="start"
+        android:ems="10"
         android:enabled="false"
-        android:layout_margin="7dp"/>
-
+        android:gravity="start"
+        android:hint="מספר בית"
+        android:inputType="number"
+        android:padding="10dp"
+        android:paddingStart="10dp" />
 
 
 </LinearLayout>
