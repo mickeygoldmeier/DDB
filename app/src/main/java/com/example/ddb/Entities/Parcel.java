@@ -87,9 +87,7 @@ public class Parcel {
         DistributionCenterAddress = distributionCenterAddress;
     }
 
-    public void setRecipientPhone(String recipientPhone) throws Exception {
-        if (!recipientPhone.matches("(((05)|(\\+?(9725)))[0-9]{8})"))
-            throw new Exception("the phone number is not valid");
+    public void setRecipientPhone(String recipientPhone) {
         RecipientPhone = recipientPhone;
     }
 
