@@ -1,13 +1,5 @@
 package com.example.ddb.UI.AddParcelProcces;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
-import com.example.ddb.Data.Action;
-import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
-import com.example.ddb.Entities.Address;
-import com.example.ddb.Entities.Parcel;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +8,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.bumptech.glide.Glide;
+import com.example.ddb.Data.Action;
+import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
+import com.example.ddb.Entities.Address;
+import com.example.ddb.Entities.Parcel;
 import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.R;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
@@ -83,6 +82,14 @@ public class AddParcelMain extends AppCompatActivity {
             }
         });
 
+        final Button prev_btn = findViewById(R.id.prev_btn);
+        prev_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view_pager.setCurrentItem(view_pager.getCurrentItem() - 1);
+            }
+        });
+
         view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -98,6 +105,11 @@ public class AddParcelMain extends AppCompatActivity {
                     isFinished = false;
                     next_btn.setText(R.string.next);
                 }
+
+                if (view_pager.getCurrentItem() == 0)
+                    prev_btn.setVisibility(View.INVISIBLE);
+                else
+                    prev_btn.setVisibility(View.VISIBLE);
             }
 
             @Override

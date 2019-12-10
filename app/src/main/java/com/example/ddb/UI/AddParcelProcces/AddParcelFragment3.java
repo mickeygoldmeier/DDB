@@ -2,12 +2,7 @@ package com.example.ddb.UI.AddParcelProcces;
 
 
 import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -20,10 +15,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.ddb.Data.CitiesList;
-import com.example.ddb.Data.GPSLocation;
 import com.example.ddb.Entities.Address;
 import com.example.ddb.R;
+import com.example.ddb.Utils.GPSLocation;
 
 import java.util.HashMap;
 

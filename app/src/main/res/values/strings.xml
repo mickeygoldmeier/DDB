@@ -127,4 +127,8 @@
     <string name="gps_is_off">Your GPS is off. Turn it up to let us know where you are automatcally.</string>
     <string name="where_are_you">Where are you?</string>
     <string name="hope_you_have_room">Choose a warehouse that has enough space for parcel...</string>
+    <string name="wrong_phone_number">Unsupported phone number</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="previous">Previous</string>
 </resources>
