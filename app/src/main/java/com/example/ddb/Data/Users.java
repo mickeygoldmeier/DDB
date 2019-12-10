@@ -6,22 +6,24 @@ import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Company;
 import com.example.ddb.Entities.Parcel;
+import com.example.ddb.Entities.Person;
 import com.example.ddb.Entities.User;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Users {
-    private static LinkedList<User> UsersList = new LinkedList<>();
-    private RegisteredPackagesDS registeredPackagesDS;
-
-    public static User getUser(String id) throws Exception {
-        UsersList.add(new Company("123", "123", Calendar.getInstance(), new Address(), "איציק משלוחים"));
-        UsersList.add(new Company("321", "123", Calendar.getInstance(), new Address(), "my company 2"));
-        UsersList.add(new Company("1234", "123", Calendar.getInstance(), new Address(), "my company 3"));
-
-        for (User user : UsersList)
-            if (user.getUserID().equals(id))
-                return user;
-        throw new Exception();
+    public static List<User> getUsersList() {
+        return UsersList;
     }
+
+    public static void setUsersList(List<User> usersList) {
+        for (User user:usersList){
+            if (user instanceof Person)
+                UsersList.add(user);
+        }
+    }
+
+    private static List<User> UsersList = new LinkedList<>();
+
 }

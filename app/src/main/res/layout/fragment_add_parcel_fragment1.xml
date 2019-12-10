@@ -25,6 +25,20 @@
         android:gravity="center"
         android:text="@string/enter_number_recipent" />
 
+    <AutoCompleteTextView
+        android:id="@+id/recipient_phone_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textDirection="ltr"
+        android:ems="10"
+        android:inputType="phone"
+        android:hint="@string/phone_or_id"
+        android:background="@drawable/edit_text_style_light"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_margin="7dp"
+        android:completionThreshold="1"/>
+<!--
     <EditText
         android:id="@+id/recipient_phone_et"
         android:layout_width="match_parent"
@@ -37,4 +51,5 @@
         android:padding="10dp"
         android:gravity="center"
         android:layout_margin="7dp"/>
+        -->
 </LinearLayout>

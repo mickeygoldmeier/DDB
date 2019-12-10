@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.backup.SharedPreferencesBackupHelper;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,6 +22,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -33,13 +37,17 @@ import com.bumptech.glide.request.transition.Transition;
 import com.example.ddb.Data.CitiesList;
 import com.example.ddb.Data.NotifyDataChange;
 import com.example.ddb.Data.User_dataSource_Maneger.UsersDS;
+import com.example.ddb.Data.Users;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+
 
 public class MainActivity extends AppCompatActivity {
     private List<User> users;
@@ -108,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText id_ed = findViewById(R.id.id_et);
         final TextView message_tv = findViewById(R.id.message_tv);
         Button signin_btn = findViewById(R.id.signin_btn);
-
+        final Context context = this;
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent i = new Intent(getApplicationContext(), MainScreenCompany.class);
                     i.putExtra("userID", user.getUserID());
+                    Users.setUsersList(users);
                     finish();
                     UsersDS.stopNotifyToUserList();
                     startActivity(i);

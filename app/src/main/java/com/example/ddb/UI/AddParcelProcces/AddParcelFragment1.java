@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class AddParcelFragment1 extends DataGetterFragment {
 
     static private String RecipientPhone;
     private EditText recipient_phone_et;
+    private AutoCompleteTextView recipient_phone_atv;
 
     public AddParcelFragment1() {
         // Required empty public constructor
@@ -37,10 +39,13 @@ public class AddParcelFragment1 extends DataGetterFragment {
         View view = inflater.inflate(R.layout.fragment_add_parcel_fragment1, container, false);
 
         // fill the text view with the phone of the last time the fragment created
-        recipient_phone_et = view.findViewById(R.id.recipient_phone_et);
+        //recipient_phone_et = view.findViewById(R.id.recipient_phone_et);
+
+        recipient_phone_atv = view.findViewById(R.id.recipient_phone_et);
         recipient_phone_et.setText(RecipientPhone);
 
         // when the phone number changing, check its good
+        /*
         recipient_phone_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -64,7 +69,7 @@ public class AddParcelFragment1 extends DataGetterFragment {
             }
         });
 
-
+*/
         return view;
     }
 
