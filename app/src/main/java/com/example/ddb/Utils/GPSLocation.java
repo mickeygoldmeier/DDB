@@ -1,11 +1,9 @@
-package com.example.ddb.Data;
+package com.example.ddb.Utils;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Geocoder;
@@ -14,22 +12,17 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
 import java.util.Locale;
-
-import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class GPSLocation extends Activity implements LocationListener {
 

@@ -3,18 +3,18 @@ package com.example.ddb.UI.AddParcelProcces;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.ddb.R;
+import com.example.ddb.Utils.DataCheck;
 
 import java.util.HashMap;
 
@@ -72,11 +72,11 @@ public class AddParcelFragment1 extends DataGetterFragment {
     public HashMap<String, Object> getData() throws Exception{
         HashMap<String, Object> hashMap = new HashMap<>();
         try {
-
+            RecipientPhone = DataCheck.normalizePhoneNumber(RecipientPhone);
             hashMap.put("RecipientPhone", RecipientPhone);
         }
         catch (Exception e){
-            throw new Exception(e);
+            Toast.makeText(getContext(), R.string.wrong_phone_number, Toast.LENGTH_SHORT).show();
         }
         RecipientPhone = "";
         return hashMap;
