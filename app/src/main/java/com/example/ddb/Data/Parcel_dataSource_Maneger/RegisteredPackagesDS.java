@@ -51,7 +51,6 @@ public class RegisteredPackagesDS {
     public static void removeParcel(String parcelid, final Action<String> action) {
         final String key = parcelid;
 
-
         parcelsRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -82,21 +81,17 @@ public class RegisteredPackagesDS {
 
     public static void updateParcel(final Parcel toUpdate, final Action<String> action) {
         final String key = toUpdate.getParcelID();
-
-        removeParcel(toUpdate.getParcelID(), new Action<String>() {
+        final String phone = toUpdate.getRecipientPhone();
+        parcelsRef.child(phone + '/' + key).setValue(toUpdate).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(String obj) {
-                addParcel(toUpdate, action);
+            public void onSuccess(Void aVoid) {
+                action.onSuccess(key);
+                action.onProgress("updated parcel data", 100);
             }
-
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(Exception exception) {
-                action.onFailure(exception);
-            }
-
-            @Override
-            public void onProgress(String status, double percent) {
-                action.onProgress(status, percent);
+            public void onFailure(@NonNull Exception e) {
+                action.onFailure(e);
             }
         });
     }

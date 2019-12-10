@@ -48,7 +48,7 @@ public class ConfigDS {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final String value = dataSnapshot.getValue(String.class);
                 if (value == null)
-                    action.onFailure(new Exception("parcel not find ..."));
+                    action.onFailure(new Exception("config not find ..."));
                 else {
                     configRef.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -73,23 +73,19 @@ public class ConfigDS {
 
     public static void updateConfig(final String key, final String data, final Action<String> action) {
 
-
-        removeConfig(key, new Action<String>() {
+        configRef.child(key).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(String obj) {
-                addConfig(key, data, action);
+            public void onSuccess(Void aVoid) {
+                action.onSuccess(key);
+                action.onProgress("upload " + key + " config", 100);
             }
-
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(Exception exception) {
-                action.onFailure(exception);
-            }
-
-            @Override
-            public void onProgress(String status, double percent) {
-                action.onProgress(status, percent);
+            public void onFailure(@NonNull Exception e) {
+                action.onFailure(e);
             }
         });
+
     }
 
     public static void getConfigID(final NotifyDataChange<String> notifyDataChange) {
