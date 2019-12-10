@@ -38,4 +38,7 @@
     <string name="yes">כן</string>
     <string name="no">לא</string>
     <string name="previous">הקודם</string>
+    <string name="got_it">הבנתי!</string>
+    <string name="empty_fields">נראה כאילו שכחת למלא את כל המידע שאנחנו צריכים. תמלא אותם ותחזור לכאן שוב?</string>
+    <string name="delete">מחק</string>
 </resources>

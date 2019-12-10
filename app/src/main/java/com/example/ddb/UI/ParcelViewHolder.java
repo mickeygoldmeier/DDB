@@ -1,44 +1,47 @@
 package com.example.ddb.UI;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddb.Entities.Parcel;
 import com.example.ddb.R;
 
-public class ParcelViewHolder extends RecyclerView.ViewHolder  {
+public class ParcelViewHolder extends RecyclerView.ViewHolder {
 
     TextView id;
     TextView type;
-    TextView fragile;
-    TextView weight;
-    TextView address;
     TextView recipient;
+    Parcel parcel;
+    ExtraParcelInfo fragmentActivity;
+    CardView cardView;
 
-    public ParcelViewHolder(@NonNull View itemView) {
+    public ParcelViewHolder(@NonNull View itemView, ExtraParcelInfo extraParcelInfo) {
         super(itemView);
+        fragmentActivity = extraParcelInfo;
+
         id = itemView.findViewById(R.id.parcel_id_tv);
         type = itemView.findViewById(R.id.parcel_type_tv);
-        fragile = itemView.findViewById(R.id.parcel_fragile_tv);
-        weight = itemView.findViewById(R.id.parcel_weight_tv);
-        address = itemView.findViewById(R.id.parcel_address_tv);
         recipient = itemView.findViewById(R.id.parcel_recipient_tv);
+
+        cardView = itemView.findViewById(R.id.parcel_view_cv);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentActivity.fillView(parcel);
+            }
+        });
     }
 
-    public void fillView(Parcel parcel)
+    public void fillView(Parcel _parcel)
     {
+        parcel = _parcel;
         id.setText(parcel.getParcelID());
         type.setText(parcel.getType().toString());
-        weight.setText(String.valueOf(parcel.getWeight()));
-        address.setText(parcel.getDistributionCenterAddress().toString());
         recipient.setText(parcel.getRecipientPhone());
-        if(parcel.isFragile())
-            fragile.setText(android.R.string.yes);
-        else
-            fragile.setText(android.R.string.no);
         switch (parcel.getType()){
             case Envelope:
                 type.setText(R.string.envelope_);

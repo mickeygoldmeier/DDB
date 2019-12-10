@@ -163,4 +163,12 @@ public class AddParcelFragment3 extends DataGetterFragment {
         hashMap.put("DistributionCenterAddress", address);
         return hashMap;
     }
+
+    @Override
+    public boolean allFieldsFull() {
+        boolean countryLen = this.Country.length() > 0;
+        boolean cityLen = this.City.length() > 0;
+        boolean numberLen = this.Number > 0;
+        return countryLen && cityLen && numberLen;
+    }
 }

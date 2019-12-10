@@ -39,8 +39,7 @@ public class AddParcelAdapter extends FragmentPagerAdapter implements GetDataInt
         for (DataGetterFragment fragment : fragments) {
             try {
                 hashMap1 = fragment.getData();
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 throw new Exception(e);
             }
             for (String key : hashMap1.keySet()) {
@@ -48,5 +47,14 @@ public class AddParcelAdapter extends FragmentPagerAdapter implements GetDataInt
             }
         }
         return hashMap;
+    }
+
+    @Override
+    public boolean allFieldsFull() {
+        for (GetDataInterface fragment : fragments) {
+            if (!fragment.allFieldsFull())
+                return false;
+        }
+        return true;
     }
 }

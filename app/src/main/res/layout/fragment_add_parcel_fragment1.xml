@@ -50,6 +50,7 @@
         android:background="@drawable/edit_text_style_light"
         android:padding="10dp"
         android:gravity="center"
+        android:textColor="#FF0000"
         android:layout_margin="7dp"/>
         -->
 </LinearLayout>

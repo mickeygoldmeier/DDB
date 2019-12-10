@@ -12,6 +12,7 @@
     app:cardMaxElevation="20dp"
     app:cardCornerRadius="25dp"
     android:clickable="true"
+    android:id="@+id/parcel_view_cv"
     tools:context=".UI.ParcelViewHolder">
 
     <LinearLayout
@@ -59,66 +60,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="שביר: "
-                android:layout_marginEnd="20dp"/>
-            <TextView
-                android:id="@+id/parcel_fragile_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="כן"
-                android:textColor="@color/colorPrimaryDark"/>
-        </GridLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="משקל:"
-                android:layout_marginEnd="20dp"/>
-            <TextView
-                android:id="@+id/parcel_weight_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="150"
-                android:textColor="@color/colorPrimaryDark"/>
-        </GridLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="כתובת:"
-                android:layout_marginEnd="20dp"/>
-            <TextView
-                android:id="@+id/parcel_address_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="הועד הלאומי 21, ירושלים"
-                android:textColor="@color/colorPrimaryDark"/>
-        </GridLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
                 android:text="נמען:"
                 android:layout_marginEnd="20dp"/>
             <TextView
@@ -126,7 +67,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="0506541358"
+                android:text="+97206541358"
+                android:textDirection="ltr"
                 android:textColor="@color/colorPrimaryDark"/>
         </GridLayout>
 

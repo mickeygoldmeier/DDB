@@ -63,4 +63,10 @@
         app:backgroundTint="@color/colorPrimaryDark"
         app:srcCompat="@drawable/add_parcel_icon"/>
 
+    <fragment
+        android:id="@+id/extra_parcel_frg"
+        android:name="com.example.ddb.UI.ExtraParcelInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,25 +2,6 @@ package com.example.ddb.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.ddb.Data.Action;
-import com.example.ddb.Data.NotifyDataChange;
-import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
-import com.example.ddb.Data.User_dataSource_Maneger.UsersDS;
-import com.example.ddb.Data.Users;
-import com.example.ddb.Entities.Address;
-import com.example.ddb.Entities.Company;
-import com.example.ddb.Entities.Parcel;
-import com.example.ddb.Entities.Person;
-import com.example.ddb.UI.AddParcelProcces.AddParcelMain;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +9,22 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.ddb.Data.NotifyDataChange;
+import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
+import com.example.ddb.Data.Users;
+import com.example.ddb.Entities.Company;
+import com.example.ddb.Entities.Parcel;
 import com.example.ddb.R;
+import com.example.ddb.UI.AddParcelProcces.AddParcelMain;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -40,7 +33,6 @@ public class MainScreenCompany extends AppCompatActivity {
     private Company company;
     private List<Parcel> parcels = new ArrayList<>();
     private RecyclerView parcelRecyclerView;
-
 
 
     @Override
@@ -110,7 +102,8 @@ public class MainScreenCompany extends AppCompatActivity {
         @Override
         public ParcelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_parcel_view_holder, parent, false);
-            return new ParcelViewHolder(v);
+            ExtraParcelInfo extraParcelInfo = (ExtraParcelInfo) getSupportFragmentManager().findFragmentById(R.id.extra_parcel_frg);
+            return new ParcelViewHolder(v, extraParcelInfo);
         }
 
         @Override

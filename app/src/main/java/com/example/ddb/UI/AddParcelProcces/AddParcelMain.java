@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -58,6 +59,14 @@ public class AddParcelMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (isFinished) {
+                    if (!parcelAdapter.allFieldsFull()) {
+                        new AlertDialog.Builder(view.getContext())
+                                .setMessage(R.string.empty_fields)
+                                .setPositiveButton(R.string.got_it, null)
+                                .setIcon(R.drawable.common_google_signin_btn_icon_dark)
+                                .show();
+                        return;
+                    }
                     ProgressBar adding_prb = findViewById(R.id.adding_prb);
                     adding_prb.setVisibility(View.VISIBLE);
                     next_btn.setVisibility(View.GONE);
@@ -140,10 +149,8 @@ public class AddParcelMain extends AppCompatActivity {
         RegisteredPackagesDS.addParcel(parcel, new Action<String>() {
             @Override
             public void onSuccess(String obj) {
-                // Toast.makeText(getBaseContext(), "parcel with id " + obj + "was uploded", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), AddParcelDoneScreen.class);
                 startActivity(intent);
-
                 finish();
             }
 

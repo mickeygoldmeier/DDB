@@ -4,4 +4,6 @@ import java.util.HashMap;
 
 public interface GetDataInterface {
     public HashMap<String, Object> getData() throws Exception;
+
+    public boolean allFieldsFull();
 }

@@ -3,9 +3,6 @@ package com.example.ddb.UI.AddParcelProcces;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -17,13 +14,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +31,8 @@ public class AddParcelFragment2 extends DataGetterFragment {
     private static boolean Fragile;
 
     private Spinner parcel_type_spr;
+    private Spinner fragile_spr;
+    private EditText parcel_weight_et;
 
     public AddParcelFragment2() {
         // Required empty public constructor
@@ -53,34 +51,12 @@ public class AddParcelFragment2 extends DataGetterFragment {
         final String[] type = {getString(R.string.envelope),
                 getString(R.string.small_package),
                 getString(R.string.large_package)};
-        /*parcel_type_spr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i)
-                {
-                    case 1:
-                        Type = Parcel_Type.SmallPackage;
-                        break;
-                    case 2:
-                        Type = Parcel_Type.LargePackage;
-                        break;
-                    default:
-                        Type = Parcel_Type.Envelope;
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });*/
         ArrayAdapter aa1 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, type);
         aa1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         parcel_type_spr.setAdapter(aa1);
 
         // set up the fragile spinner
-        Spinner fragile_spr = view.findViewById(R.id.fragile_spr);
+        fragile_spr = view.findViewById(R.id.fragile_spr);
         final boolean[] fragileType = {true, false};
         final String[] fragileText = {"זה שביר", "זה לא שביר"};
         fragile_spr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -100,7 +76,7 @@ public class AddParcelFragment2 extends DataGetterFragment {
         fragile_spr.setAdapter(aa2);
 
         // set up the weight edit text
-        final EditText parcel_weight_et = view.findViewById(R.id.parcel_weight_et);
+        parcel_weight_et = view.findViewById(R.id.parcel_weight_et);
         parcel_weight_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -150,5 +126,10 @@ public class AddParcelFragment2 extends DataGetterFragment {
             throw new Exception(e);
         }
         return hashMap;
+    }
+
+    @Override
+    public boolean allFieldsFull() {
+        return parcel_weight_et.getText().length() > 0;
     }
 }
