@@ -119,11 +119,11 @@ public class UsersDS {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     User user;
-                    try {
+                    if (dataSnapshot.child("lastName").getValue() != null)
                         user = dataSnapshot.getValue(Person.class);
-                    } catch (Exception e) {
+                    else
                         user = dataSnapshot.getValue(Company.class);
-                    }
+
 
                     userList.add(user);
                     notifyDataChange.OnDataChanged(userList);

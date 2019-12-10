@@ -8,12 +8,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.ddb.Data.Users;
 import com.example.ddb.R;
 import com.example.ddb.Utils.DataCheck;
 
@@ -27,6 +29,7 @@ public class AddParcelFragment1 extends DataGetterFragment {
     static private String RecipientPhone;
     private EditText recipient_phone_et;
     private AutoCompleteTextView recipient_phone_atv;
+    private String[] phone_numbers;
 
     public AddParcelFragment1() {
         // Required empty public constructor
@@ -42,11 +45,15 @@ public class AddParcelFragment1 extends DataGetterFragment {
         //recipient_phone_et = view.findViewById(R.id.recipient_phone_et);
 
         recipient_phone_atv = view.findViewById(R.id.recipient_phone_et);
-        recipient_phone_et.setText(RecipientPhone);
+        recipient_phone_atv.setText(RecipientPhone);
+        phone_numbers = Users.getStringPhoneList();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, phone_numbers);
+        recipient_phone_atv.setAdapter(adapter);
 
         // when the phone number changing, check its good
-        /*
-        recipient_phone_et.addTextChangedListener(new TextWatcher() {
+
+        recipient_phone_atv.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -60,16 +67,16 @@ public class AddParcelFragment1 extends DataGetterFragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(!recipient_phone_et.getText().toString().matches("(((05)|(\\+?(9725)))[0-9]{8})")) {
-                    recipient_phone_et.setTextColor(Color.RED);
+                if(!recipient_phone_atv.getText().toString().matches("(((05)|(\\+?(9725)))[0-9]{8})")) {
+                    recipient_phone_atv.setTextColor(Color.RED);
                 }
                 else
-                    recipient_phone_et.setTextColor(Color.BLACK);
-                RecipientPhone = recipient_phone_et.getText().toString();
+                    recipient_phone_atv.setTextColor(Color.BLACK);
+                RecipientPhone = recipient_phone_atv.getText().toString();
             }
         });
 
-*/
+
         return view;
     }
 

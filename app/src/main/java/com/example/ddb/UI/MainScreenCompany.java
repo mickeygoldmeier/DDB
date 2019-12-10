@@ -68,6 +68,7 @@ public class MainScreenCompany extends AppCompatActivity {
             Bundle b = getIntent().getExtras();
             String str = b.getString("userID");
             company = (Company) Users.getUser(str);
+            //company = (Company) b.get("user");
             getSupportActionBar().setTitle(company.getName());
         } catch (Exception e) {
             getSupportActionBar().setTitle(e.getMessage());
