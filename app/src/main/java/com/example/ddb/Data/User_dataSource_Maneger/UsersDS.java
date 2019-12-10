@@ -110,7 +110,7 @@ public class UsersDS {
     public static void notifyToUserList(final NotifyDataChange<List<User>> notifyDataChange) {
         if (notifyDataChange != null) {
             if (userRefChildEventListener != null) {
-                notifyDataChange.onFailure(new Exception("first unNotify student list"));
+                notifyDataChange.onFailure(new Exception("first unNotify user list"));
                 return;
             }
             userList.clear();
