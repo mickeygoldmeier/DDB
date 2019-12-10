@@ -86,11 +86,12 @@ public class MainScreenCompany extends AppCompatActivity {
         RegisteredPackagesDS.notifyToParcelList(new NotifyDataChange<List<Parcel>>() {
             @Override
             public void OnDataChanged(List<Parcel> obj) {
-                for (Parcel parcel:obj) {
-                    if (parcel.getCompanyID().equals(company.getUserID()))
-                        if (!parcels.contains(parcel))
-                            parcels.add(parcel);
-                }
+                parcels = obj;
+                //for (Parcel parcel:obj) {
+                  //  if (parcel.getCompanyID().equals(company.getUserID()))
+                    //    if (!parcels.contains(parcel))
+                      //      parcels.add(parcel);
+                //}
                 if (parcelRecyclerView.getAdapter() == null) {
                     parcelRecyclerView.setAdapter(new ParcelRecycleViewAdapter());
                 }

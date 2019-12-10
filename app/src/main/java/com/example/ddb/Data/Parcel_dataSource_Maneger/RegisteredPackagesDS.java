@@ -110,7 +110,16 @@ public class RegisteredPackagesDS {
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     for (DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()) {
                         Parcel parcel = uniqueKeySnapshot.getValue(Parcel.class);
-                        parcelList.add(parcel);
+                        boolean flag = true;
+                        for (int i = 0; i < parcelList.size(); i++) {
+                            if (parcelList.get(i).getParcelID().equals(parcel.getParcelID())) {
+                                parcelList.set(i, parcel);
+                                flag = false;
+                                break;
+                            }
+                        }
+                        if (flag)
+                            parcelList.add(parcel);
                     }
                     notifyDataChange.OnDataChanged(parcelList);
                 }
