@@ -143,7 +143,29 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginEnd="20dp"
-                    android:text="נמען:" />
+                    android:text="שם נמען:" />
+
+                <TextView
+                    android:id="@+id/parcel_recipient_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="ישראל ישראלי"
+                    android:textColor="@color/colorPrimaryDark" />
+            </GridLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginEnd="20dp"
+                    android:text="מספר נמען:" />
 
                 <TextView
                     android:id="@+id/parcel_recipient_tv"

@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.ddb.Data.Users;
 import com.example.ddb.Entities.Parcel;
+import com.example.ddb.Entities.Person;
+import com.example.ddb.Entities.User;
 import com.example.ddb.R;
 
 /**
@@ -24,8 +27,9 @@ public class ExtraParcelInfo extends Fragment {
     TextView weight;
     TextView address;
     TextView recipient;
+    TextView recipient_name;
     RelativeLayout relativeLayout;
-
+    Person person;
     public ExtraParcelInfo() {
         // Required empty public constructor
     }
@@ -43,7 +47,7 @@ public class ExtraParcelInfo extends Fragment {
         weight = view.findViewById(R.id.parcel_weight_tv);
         address = view.findViewById(R.id.parcel_address_tv);
         recipient = view.findViewById(R.id.parcel_recipient_tv);
-
+        recipient_name = view.findViewById(R.id.parcel_recipient_name_tv);
         relativeLayout = view.findViewById(R.id.extra_parcel_rl);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,12 +60,19 @@ public class ExtraParcelInfo extends Fragment {
     }
 
     public void fillView(Parcel parcel) {
+        for (User user:Users.getUsersList()) {
+            if(parcel.getRecipientPhone().equals(user.getUserID())) {
+                person = (Person) user;
+                break;
+            }
+        }
         relativeLayout.setVisibility(View.VISIBLE);
         id.setText(parcel.getParcelID());
         type.setText(parcel.getType().toString());
         weight.setText(String.valueOf(parcel.getWeight()));
         address.setText(parcel.getDistributionCenterAddress().toString());
         recipient.setText(parcel.getRecipientPhone());
+        recipient_name.setText(person.getFirstName() + " " + person.getLastName());
         if (parcel.isFragile())
             fragile.setText(android.R.string.yes);
         else
