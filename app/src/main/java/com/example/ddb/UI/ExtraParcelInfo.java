@@ -11,10 +11,13 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.ddb.Data.Users;
+import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Parcel;
 import com.example.ddb.Entities.Person;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +32,7 @@ public class ExtraParcelInfo extends Fragment {
     TextView recipient;
     TextView recipient_name;
     RelativeLayout relativeLayout;
-    Person person;
+    Person person = new Person("+99999999","123", Calendar.getInstance(),new Address(),"ישראל","ישראלי");
     public ExtraParcelInfo() {
         // Required empty public constructor
     }
