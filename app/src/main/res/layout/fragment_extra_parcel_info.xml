@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#97000000"
     android:gravity="center"
-    android:visibility="visible"
+    android:visibility="gone"
     tools:context=".UI.ExtraParcelInfo">
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

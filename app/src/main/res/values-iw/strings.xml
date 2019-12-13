@@ -41,4 +41,13 @@
     <string name="got_it">הבנתי!</string>
     <string name="empty_fields">נראה כאילו שכחת למלא את כל המידע שאנחנו צריכים. תמלא אותם ותחזור לכאן שוב?</string>
     <string name="delete">מחק</string>
+    <string name="forgot_your_password">יש מצב ששכחת את הסיסמא?</string>
+    <string name="all_your_parcels">הנה רשימת כל החבילות שלכם:</string>
+    <string name="enter_your_password">האם אתה מוכן לגלות לנו את הסיסמה הסודית שלך?</string>
+    <string name="sign_up">הרשמה</string>
+    <string name="we_love_new_members">אנחנו אוהבים חברים חדשים. אנחנו שמחים שאתה רוצה להצטרף לאפליקציה שלנו!</string>
+    <string name="sign_up_intro">לפני שנוכל לתת לך להשתמש באפליקציה אנחנו נצטרך ללמוד קצת יותר עליך ועל החברה שלך.\nאז מה אתה אומר? אתה מוכן לתת לנו את השם והאימייל שלך ואנחנו כבר ניצור איתך קשר?</string>
+    <string name="your_email">כתובת האימייל שלך</string>
+    <string name="your_name">השם שלך</string>
+    <string name="im_in">אני מוכן, תרשמו אותי</string>
 </resources>

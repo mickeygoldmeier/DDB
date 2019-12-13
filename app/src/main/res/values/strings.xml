@@ -134,4 +134,13 @@
     <string name="got_it">Got it!</string>
     <string name="empty_fields">Look like you forgot to fill all the necessary info. Fill them and come back later?</string>
     <string name="delete">Delete</string>
+    <string name="forgot_your_password">Look like you forgot yor password...?</string>
+    <string name="all_your_parcels">Here is a list of all of your\'s parcel:</string>
+    <string name="enter_your_password">Can you tell us your secret password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="we_love_new_members">We love new members. We are so haapy you want to join to our app!</string>
+    <string name="sign_up_intro">Before we can let you use are app we have to learn more about you and your company.\nSo what do you say? Would you give us your name and mail and we will be in touch?</string>
+    <string name="your_email">Your email</string>
+    <string name="your_name">Your name</string>
+    <string name="im_in">Im in, Sign me up</string>
 </resources>
