@@ -1,17 +1,16 @@
 package com.example.ddb.UI;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ddb.R;
+import com.example.ddb.Utils.SendEmail;
 
 public class SignUpScreen extends AppCompatActivity {
 
@@ -24,11 +23,13 @@ public class SignUpScreen extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getSupportActionBar().setTitle("");
 
-        Button sendEmail = findViewById(R.id.send_mail_btn);
+        final Button sendEmail = findViewById(R.id.send_mail_btn);
         sendEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_SEND);
+                SendEmail email = new SendEmail(getApplicationContext(), "natanmanor@gmail.com", "Subject", "Text");
+                email.execute();
+                /*Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("message/rfc822");
                 i.putExtra(Intent.EXTRA_EMAIL, new String[]{"natanmanor@gmail.com"});
                 i.putExtra(Intent.EXTRA_SUBJECT, "subject");
@@ -37,7 +38,7 @@ public class SignUpScreen extends AppCompatActivity {
                     startActivity(Intent.createChooser(i, "send mail"));
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         });
     }
