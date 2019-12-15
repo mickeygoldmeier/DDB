@@ -82,14 +82,14 @@ public class ExtraParcelInfo extends Fragment {
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(view.getContext())
-                        .setMessage(R.string.empty_fields)
-                        .setPositiveButton("הדפס", new DialogInterface.OnClickListener() {
+                        .setMessage(R.string.share_or_print)
+                        .setPositiveButton(R.string.print, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 printQRCode();
                             }
                         })
-                        .setNegativeButton("שתף", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.share, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 shareQRCode();
@@ -126,7 +126,7 @@ public class ExtraParcelInfo extends Fragment {
             shareIntent.setAction(Intent.ACTION_SEND);
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
             shareIntent.setType("image/jpeg");
-            startActivity(Intent.createChooser(shareIntent, "Choose way to share"));
+            startActivity(Intent.createChooser(shareIntent, getContext().getResources().getString(R.string.share_to)));
         } catch (Exception e) {
             e.printStackTrace();
         }
