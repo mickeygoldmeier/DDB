@@ -76,6 +76,7 @@
             android:drawableRight="@drawable/enter_icon" />
 
         <TextView
+            android:id="@+id/signingup_tv"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

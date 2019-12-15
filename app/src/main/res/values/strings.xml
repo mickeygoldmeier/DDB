@@ -134,4 +134,5 @@
     <string name="got_it">Got it!</string>
     <string name="empty_fields">Look like you forgot to fill all the necessary info. Fill them and come back later?</string>
     <string name="delete">Delete</string>
+    <string name="title_activity_company__sign__up">Company_Sign_Up</string>
 </resources>
