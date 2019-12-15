@@ -19,6 +19,7 @@ import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Parcel;
 import com.example.ddb.Entities.Parcel_Type;
 import com.example.ddb.R;
+import com.example.ddb.Utils.QR_code;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
 import java.util.HashMap;
@@ -139,7 +140,7 @@ public class AddParcelMain extends AppCompatActivity {
             parcel.setType((Parcel_Type) hashMap.get("Type"));
             parcel.setDistributionCenterAddress((Address) hashMap.get("DistributionCenterAddress"));
             parcel.setCompanyID(getIntent().getExtras().getString("company_id"));
-            // parcel.setQRCode(QR_code.getMyBitmap(parcel.getParcelID()));
+            parcel.setQRCode(QR_code.getMyBitmap(parcel.getParcelID()));
         } catch (Exception e) {
             throw new Exception(e);
         }

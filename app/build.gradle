@@ -35,9 +35,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.github.christophesmet:android_maskable_layout:v1.3.1'
     implementation 'com.github.kenglxn.QRGen:android:2.6.0'
-
-
-
     implementation 'com.google.firebase:firebase-storage:16.0.4'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'

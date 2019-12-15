@@ -1,13 +1,12 @@
 package com.example.ddb.UI;
 
 
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.print.PrintHelper;
 
@@ -26,6 +26,10 @@ import com.example.ddb.Entities.Person;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
 
+import net.glxn.qrgen.android.QRCode;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Calendar;
 
 /**
@@ -43,6 +47,8 @@ public class ExtraParcelInfo extends Fragment {
     RelativeLayout relativeLayout;
     ImageView qrcode;
     Person person = new Person("+99999999","123", Calendar.getInstance(),new Address(),"ישראל","ישראלי");
+    Parcel currentParcel;
+
     public ExtraParcelInfo() {
         // Required empty public constructor
     }
@@ -93,6 +99,10 @@ public class ExtraParcelInfo extends Fragment {
             }
         });
 
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
+
         return view;
     }
 
@@ -100,25 +110,32 @@ public class ExtraParcelInfo extends Fragment {
         // Print the QR code
         PrintHelper photoPrinter = new PrintHelper(getActivity());
         photoPrinter.setScaleMode(PrintHelper.SCALE_MODE_FIT);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.add_pacel_done);
-        photoPrinter.printBitmap("droids.jpg - test print", bitmap);
+        Bitmap bitmap = QRCode.from(currentParcel.getParcelID()).bitmap();
+        photoPrinter.printBitmap("DDB " + currentParcel.getParcelID() + " QR code", bitmap);
     }
 
     private void shareQRCode() {
         // Share the QR code as image
-        Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
-                "://" + getContext().getResources().getResourcePackageName(R.drawable.add_pacel_done) +
-                '/' + getContext().getResources().getResourceTypeName(R.drawable.add_pacel_done) +
-                '/' + getContext().getResources().getResourceEntryName(R.drawable.add_pacel_done));
+        try {
+            File file = new File(getContext().getCacheDir() + "/Image.png");
+            Bitmap bitmap = QRCode.from(currentParcel.getParcelID()).bitmap();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(file));
+            Uri uri = FileProvider.getUriForFile(getContext(), "com.example.ddb.fileprovider", file);
 
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        shareIntent.setType("image/jpeg");
-        startActivity(Intent.createChooser(shareIntent, "Choose way to share"));
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            shareIntent.setType("image/jpeg");
+            startActivity(Intent.createChooser(shareIntent, "Choose way to share"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public void fillView(Parcel parcel) {
+        currentParcel = parcel;
         for (User user:Users.getUsersList()) {
             if(parcel.getRecipientPhone().equals(user.getUserID())) {
                 person = (Person) user;
@@ -126,7 +143,7 @@ public class ExtraParcelInfo extends Fragment {
             }
         }
         relativeLayout.setVisibility(View.VISIBLE);
-        //qrcode.s(parcel.getQRCode());
+        qrcode.setImageBitmap(QRCode.from(parcel.getParcelID()).bitmap());
         id.setText(parcel.getParcelID());
         type.setText(parcel.getType().toString());
         weight.setText(String.valueOf(parcel.getWeight()));
