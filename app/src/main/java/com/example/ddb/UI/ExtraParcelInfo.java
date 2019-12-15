@@ -58,6 +58,7 @@ public class ExtraParcelInfo extends Fragment {
                 relativeLayout.setVisibility(View.GONE);
             }
         });
+        view.bringToFront();
 
         return view;
     }

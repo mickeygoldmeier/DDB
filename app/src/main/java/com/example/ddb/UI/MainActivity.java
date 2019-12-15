@@ -28,6 +28,7 @@ import com.example.ddb.R;
 import java.util.Calendar;
 import java.util.List;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Exception exception) {
-
+                Intent i = new Intent(getApplicationContext(), NoInternetConnection.class);
+                i.setFlags(FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(i);
             }
         });
 
@@ -116,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
 
     }
 

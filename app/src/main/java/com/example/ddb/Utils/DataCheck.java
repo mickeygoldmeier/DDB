@@ -5,7 +5,8 @@ public class DataCheck {
         if (!phoneNumber.matches("(((05)|(\\+?(9725)))[0-9]{8})"))
             throw new WrongPhoneNumber();
 
-        phoneNumber = phoneNumber.replaceFirst("(05)", "+9725");
+        if (phoneNumber.startsWith("05") || phoneNumber.startsWith("9725"))
+            phoneNumber = phoneNumber.replaceFirst("(05)|(9725)", "+9725");
         return phoneNumber;
     }
 
