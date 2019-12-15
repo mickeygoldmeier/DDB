@@ -1,5 +1,6 @@
 package com.example.ddb.Entities;
 
+import android.graphics.Bitmap;
 import android.widget.Toast;
 
 import com.example.ddb.Data.Action;
@@ -17,12 +18,15 @@ public class Parcel {
     private String ParcelID;
     private String CompanyID;
 
+
+    private Bitmap QRCode;
+
     public Parcel() {
     }
 
 
 
-    public Parcel(Parcel_Type type, boolean fragile, double weight, Address distributionCenterAddress, String recipientPhone, String parcelID, String companyID) {
+    public Parcel(Parcel_Type type, boolean fragile, double weight, Address distributionCenterAddress, String recipientPhone, String parcelID, String companyID,Bitmap bitmap) {
         Type = type;
         Fragile = fragile;
         Weight = weight;
@@ -30,6 +34,7 @@ public class Parcel {
         RecipientPhone = recipientPhone;
         ParcelID = parcelID;
         CompanyID = companyID;
+        QRCode = bitmap;
     }
 
 
@@ -92,6 +97,13 @@ public class Parcel {
     }
 
 
+    public Bitmap getQRCode() {
+        return QRCode;
+    }
+
+    public void setQRCode(Bitmap QRCode) {
+        this.QRCode = QRCode;
+    }
     public void getIdFromDataBase() {
         ConfigDS.getConfigID(new NotifyDataChange<String>() {
             @Override

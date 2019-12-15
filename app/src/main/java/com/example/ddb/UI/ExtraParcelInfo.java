@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class ExtraParcelInfo extends Fragment {
     TextView recipient;
     TextView recipient_name;
     RelativeLayout relativeLayout;
+    ImageView qrcode;
     Person person = new Person("+99999999","123", Calendar.getInstance(),new Address(),"ישראל","ישראלי");
     public ExtraParcelInfo() {
         // Required empty public constructor
@@ -51,6 +53,7 @@ public class ExtraParcelInfo extends Fragment {
         address = view.findViewById(R.id.parcel_address_tv);
         recipient = view.findViewById(R.id.parcel_recipient_tv);
         recipient_name = view.findViewById(R.id.parcel_recipient_name_tv);
+        qrcode = view.findViewById(R.id.qr_code_iv);
         relativeLayout = view.findViewById(R.id.extra_parcel_rl);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +74,7 @@ public class ExtraParcelInfo extends Fragment {
             }
         }
         relativeLayout.setVisibility(View.VISIBLE);
+        qrcode.setImageBitmap(parcel.getQRCode());
         id.setText(parcel.getParcelID());
         type.setText(parcel.getType().toString());
         weight.setText(String.valueOf(parcel.getWeight()));

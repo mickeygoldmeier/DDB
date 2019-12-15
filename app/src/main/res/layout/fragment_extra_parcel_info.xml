@@ -29,6 +29,7 @@
             android:padding="30dp">
 
             <ImageView
+                android:id="@+id/qr_code_iv"
                 android:layout_width="30pt"
                 android:layout_height="30pt"
                 android:layout_gravity="center"
