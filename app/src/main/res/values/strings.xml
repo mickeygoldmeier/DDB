@@ -148,4 +148,6 @@
     <string name="share">Share</string>
     <string name="share_or_print">What do you like to do with the OR code of this parcel?</string>
     <string name="share_to">How do you want to share this QR code?</string>
+    <string name="delete_parcel">Are you sure you want to delete this parcel?</string>
+    <string name="cancel">Cancel</string>
 </resources>

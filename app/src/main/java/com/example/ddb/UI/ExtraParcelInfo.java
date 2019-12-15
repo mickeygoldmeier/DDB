@@ -10,6 +10,7 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.print.PrintHelper;
 
+import com.example.ddb.Data.Action;
+import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Data.Users;
 import com.example.ddb.Entities.Address;
 import com.example.ddb.Entities.Parcel;
@@ -31,6 +34,7 @@ import net.glxn.qrgen.android.QRCode;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +49,7 @@ public class ExtraParcelInfo extends Fragment {
     TextView recipient;
     TextView recipient_name;
     RelativeLayout relativeLayout;
+    Button deleteParcel;
     ImageView qrcode;
     Person person = new Person("+99999999","123", Calendar.getInstance(),new Address(),"ישראל","ישראלי");
     Parcel currentParcel;
@@ -68,6 +73,7 @@ public class ExtraParcelInfo extends Fragment {
         recipient = view.findViewById(R.id.parcel_recipient_tv);
         recipient_name = view.findViewById(R.id.parcel_recipient_name_tv);
         qrcode = view.findViewById(R.id.qr_code_iv);
+        deleteParcel =view.findViewById(R.id.delete_parcel_btn);
         relativeLayout = view.findViewById(R.id.extra_parcel_rl);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +101,43 @@ public class ExtraParcelInfo extends Fragment {
                                 shareQRCode();
                             }
                         })
+                        .show();
+            }
+        });
+
+        deleteParcel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(v.getContext())
+                        .setMessage(R.string.delete_parcel)
+                        .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                RegisteredPackagesDS.removeParcel(currentParcel, new Action<String>() {
+                                    @Override
+                                    public void onSuccess(String obj) {
+                                        relativeLayout.setVisibility(View.GONE);
+                                        MainScreenCompany.setParcels(RegisteredPackagesDS.getParcelList());
+                                    }
+
+                                    @Override
+                                    public void onFailure(Exception exception) {
+
+                                    }
+
+                                    @Override
+                                    public void onProgress(String status, double percent) {
+
+                                    }
+                                });
+                            }
+                        }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
                         .show();
             }
         });

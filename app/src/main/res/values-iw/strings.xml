@@ -55,4 +55,6 @@
     <string name="share">לשתף</string>
     <string name="share_or_print">מה אתה רוצה לעשות עם קוד הQR של החבילה הזאת?</string>
     <string name="share_to">איך אתה רוצה לשתף את קוד הQR הזה?</string>
+    <string name="delete_parcel">האם אתה בטוח שאתה רוצה למחוק את החבילה?</string>
+    <string name="cancel">ביטול</string>
 </resources>

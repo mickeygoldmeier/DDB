@@ -49,19 +49,26 @@ public class RegisteredPackagesDS {
     }
 
 
-    public static void removeParcel(String parcelid, final Action<String> action) {
-        final String key = parcelid;
+    public static void removeParcel(Parcel parcel, final Action<String> action) {
+        final String Phone = parcel.getRecipientPhone();
+        final String key = parcel.getParcelID();
 
-        parcelsRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+        parcelsRef.child(Phone+"/"+key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final Parcel value = dataSnapshot.getValue(Parcel.class);
                 if (value == null)
-                    action.onFailure(new Exception("parcel not find ..."));
+                    action.onFailure(new Exception("parcel not found ..."));
                 else {
-                    parcelsRef.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    parcelsRef.child(Phone+"/"+key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
+                            for (Parcel parcel: parcelList) {
+                                if (key.equals(parcel.getParcelID())){
+                                    parcelList.remove(parcel);
+                                    break;
+                                }
+                            }
                             action.onSuccess(value.getParcelID());
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -177,5 +184,8 @@ public class RegisteredPackagesDS {
             parcelsRef.removeEventListener(parcelRefChildEventListener);
             parcelRefChildEventListener = null;
         }
+    }
+    public static List<Parcel> getParcelList(){
+        return parcelList;
     }
 }

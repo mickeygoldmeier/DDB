@@ -31,8 +31,8 @@ import java.util.Random;
 public class MainScreenCompany extends AppCompatActivity {
 
     private Company company;
-    private List<Parcel> parcels = new ArrayList<>();
-    private RecyclerView parcelRecyclerView;
+    private static List<Parcel> parcels = new ArrayList<>();
+    private static RecyclerView parcelRecyclerView;
 
 
     @Override
@@ -118,6 +118,10 @@ public class MainScreenCompany extends AppCompatActivity {
         }
     }
 
+    public static void setParcels(List<Parcel> list){
+        parcels = list;
+        parcelRecyclerView.getAdapter().notifyDataSetChanged();
+    }
 
     protected void onDestroy() {
         RegisteredPackagesDS.stopNotifyToParcelList();
