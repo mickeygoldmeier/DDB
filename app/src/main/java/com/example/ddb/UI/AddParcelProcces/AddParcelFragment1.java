@@ -89,6 +89,7 @@ public class AddParcelFragment1 extends DataGetterFragment {
             Toast.makeText(getContext(), R.string.wrong_phone_number, Toast.LENGTH_SHORT).show();
         }
         RecipientPhone = "";
+        recipient_phone_atv.setText("");
         return hashMap;
     }
 
