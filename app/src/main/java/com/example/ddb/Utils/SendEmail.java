@@ -31,9 +31,15 @@ public class SendEmail extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog = ProgressDialog.show(context, "Sending massage", "Please wait");
+    }
+
+    @Override
     protected void onPostExecute(Void avoid) {
         super.onPostExecute(avoid);
-        progressDialog.dismiss();
+        // progressDialog.dismiss();
         Toast.makeText(context, "Massage sent", Toast.LENGTH_LONG).show();
     }
 
@@ -54,14 +60,14 @@ public class SendEmail extends AsyncTask<Void, Void, Void> {
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         // TODO: make it work...
-                        return new PasswordAuthentication("***", "***");
+                        return new PasswordAuthentication("nmjavaproject2020@gmail.com", "nmmg1999");
                     }
                 });
 
         try {
             MimeMessage mm = new MimeMessage(session);
 
-            mm.setFrom(new InternetAddress("natanmanor@gmail.com"));
+            mm.setFrom(new InternetAddress("nmjavaproject2020@gmail.com"));
             mm.addRecipients(Message.RecipientType.TO, new InternetAddress[]{new InternetAddress(email)});
             mm.setSubject(subject);
             mm.setText(massage);
