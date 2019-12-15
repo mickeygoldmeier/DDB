@@ -1,9 +1,6 @@
 package com.example.ddb.Entities;
 
-import android.graphics.Bitmap;
-import android.widget.Toast;
-
-import com.example.ddb.Data.Action;
+import android.net.Uri;
 import com.example.ddb.Data.Config_dataSource_Maneger.ConfigDS;
 import com.example.ddb.Data.NotifyDataChange;
 import com.google.firebase.database.Exclude;
@@ -19,14 +16,14 @@ public class Parcel {
     private String CompanyID;
 
 
-    private Bitmap QRCode;
+    private Uri QRCode;
 
     public Parcel() {
     }
 
 
 
-    public Parcel(Parcel_Type type, boolean fragile, double weight, Address distributionCenterAddress, String recipientPhone, String parcelID, String companyID,Bitmap bitmap) {
+    public Parcel(Parcel_Type type, boolean fragile, double weight, Address distributionCenterAddress, String recipientPhone, String parcelID, String companyID,Uri bitmap) {
         Type = type;
         Fragile = fragile;
         Weight = weight;
@@ -96,12 +93,12 @@ public class Parcel {
         RecipientPhone = recipientPhone;
     }
 
-
-    public Bitmap getQRCode() {
+    @Exclude
+    public Uri getQRCode() {
         return QRCode;
     }
-
-    public void setQRCode(Bitmap QRCode) {
+    @Exclude
+    public void setQRCode(Uri QRCode) {
         this.QRCode = QRCode;
     }
     public void getIdFromDataBase() {

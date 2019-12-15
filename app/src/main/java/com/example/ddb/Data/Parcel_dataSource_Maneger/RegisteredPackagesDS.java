@@ -31,6 +31,7 @@ public class RegisteredPackagesDS {
     public static void addParcel(final Parcel parcel, final Action<String> action) {
         String phone = parcel.getRecipientPhone();
         String key = parcel.getParcelID();
+        RegisteredPackagesDS_QRStorege.addQR(parcel.getQRCode(),key,action);
         parcelsRef.child(phone + "/" + key).setValue(parcel).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

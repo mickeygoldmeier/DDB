@@ -126,7 +126,7 @@ public class ExtraParcelInfo extends Fragment {
             }
         }
         relativeLayout.setVisibility(View.VISIBLE);
-        qrcode.setImageBitmap(parcel.getQRCode());
+        //qrcode.s(parcel.getQRCode());
         id.setText(parcel.getParcelID());
         type.setText(parcel.getType().toString());
         weight.setText(String.valueOf(parcel.getWeight()));
