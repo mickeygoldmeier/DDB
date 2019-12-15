@@ -59,7 +59,6 @@ public class AddParcelFragment1 extends DataGetterFragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-// validate the phone number using regex
 
             }
 

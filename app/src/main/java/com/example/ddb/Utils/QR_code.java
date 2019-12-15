@@ -3,11 +3,9 @@ package com.example.ddb.Utils;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
-
 import net.glxn.qrgen.android.QRCode;
 
 import java.io.File;
-import java.net.URI;
 
 public class QR_code {
 
@@ -17,7 +15,7 @@ public class QR_code {
         String PATH = "/mnt/sdcard/"+ FILENAME;
         File f = new File(PATH);
         Uri yourUri = Uri.fromFile(f);
-        return QRCode.from(id).bitmap();
+        return null; //QRCode.from(id).bitmap();
     }
 
 

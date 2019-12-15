@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130pt"
+        android:layout_height="80pt"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:orientation="vertical"
@@ -87,6 +87,21 @@
             android:padding="15dp"
             android:text="@string/im_in"
             android:textColor="#ffffff" />
+
+        <ProgressBar
+            android:id="@+id/sending_email_pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/colorPrimary"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/we_got_deateils_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/we_got_your_details"
+            android:visibility="gone" />
 
     </LinearLayout>
 

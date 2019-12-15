@@ -1,9 +1,11 @@
 package com.example.ddb.Utils;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.Properties;
 
@@ -20,27 +22,33 @@ public class SendEmail extends AsyncTask<Void, Void, Void> {
     private String email;
     private String subject;
     private String massage;
-    private ProgressDialog progressDialog;
+    private Button sendBTN;
+    private ProgressBar progressBar;
+    private TextView textView;
 
     // Class constructor
-    public SendEmail(Context context, String email, String subject, String massage) {
+    public SendEmail(Context context, String email, String subject, String massage, Button sendBTN, ProgressBar progressBar, TextView textView) {
         this.context = context;
         this.email = email;
         this.subject = subject;
         this.massage = massage;
+        this.sendBTN = sendBTN;
+        this.progressBar = progressBar;
+        this.textView = textView;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = ProgressDialog.show(context, "Sending massage", "Please wait");
+        sendBTN.setVisibility(View.GONE);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     @Override
     protected void onPostExecute(Void avoid) {
         super.onPostExecute(avoid);
-        // progressDialog.dismiss();
-        Toast.makeText(context, "Massage sent", Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(ProgressBar.GONE);
+        textView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -59,7 +67,6 @@ public class SendEmail extends AsyncTask<Void, Void, Void> {
         session = Session.getDefaultInstance(prop,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        // TODO: make it work...
                         return new PasswordAuthentication("nmjavaproject2020@gmail.com", "nmmg1999");
                     }
                 });

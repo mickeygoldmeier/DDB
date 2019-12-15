@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText id_ed = findViewById(R.id.id_et);
         final TextView message_tv = findViewById(R.id.message_tv);
-        Button signin_btn = findViewById(R.id.signin_btn);
+        final Button signin_btn = findViewById(R.id.signin_btn);
         final Context context = this;
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,20 +106,39 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     User user = getUser(normalizePhoneNumber(id_ed.getText().toString()));
 
-                    Intent i = new Intent(getApplicationContext(), MainScreenCompany.class);
-                    i.putExtra("userID", user.getUserID());
-                    Users.setUsersList(users);
-                    finish();
-                    UsersDS.stopNotifyToUserList();
-                    startActivity(i);
+                    EditText password_et = findViewById(R.id.password_et);
+                    if (password_et.getVisibility() == EditText.VISIBLE) {
+                        if (password_et.getText().toString().equals(user.getPassword())) {
+                            Intent i = new Intent(getApplicationContext(), MainScreenCompany.class);
+                            i.putExtra("userID", user.getUserID());
+                            Users.setUsersList(users);
+                            finish();
+                            UsersDS.stopNotifyToUserList();
+                            startActivity(i);
+                        } else
+                            throw new StringException(R.string.forgot_your_password);
 
-                } catch (Exception e) {
-                    message_tv.setText(R.string.phone_number_error);
+                    } else {
+                        password_et.setVisibility(View.VISIBLE);
+                        message_tv.setText(R.string.enter_your_password);
+                    }
+
+                } catch (StringException e) {
+                    message_tv.setText(e.getStringRef());
                     message_tv.setTextColor(Color.RED);
                 }
             }
         });
 
+        // sign up to the system
+        final TextView signup_tv = findViewById(R.id.signup_tv);
+        signup_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), SignUpScreen.class);
+                startActivity(i);
+            }
+        });
     }
 
     private String normalizePhoneNumber(String number) {
@@ -129,11 +148,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public User getUser(String id) throws Exception {
+    public User getUser(String id) throws StringException {
         for (User user : users)
             if (user.getUserID().equals(id))
                 return user;
-        throw new Exception();
+        throw new StringException(R.string.phone_number_error);
+    }
+
+    // Inner exception with reference to string from R.String
+    private class StringException extends Exception {
+        private int stringRef;
+
+        public StringException(int stringRef) {
+            super();
+            this.stringRef = stringRef;
+        }
+
+        public int getStringRef() {
+            return stringRef;
+        }
     }
 
 }

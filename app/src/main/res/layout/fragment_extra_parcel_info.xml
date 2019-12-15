@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#97000000"
     android:gravity="center"
-    android:visibility="gone"
+    android:visibility="visible"
     tools:context=".UI.ExtraParcelInfo">
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,8 +30,8 @@
 
             <ImageView
                 android:id="@+id/qr_code_iv"
-                android:layout_width="30pt"
-                android:layout_height="30pt"
+                android:layout_width="60pt"
+                android:layout_height="60pt"
                 android:layout_gravity="center"
                 android:src="@drawable/delete_parcel_icon" />
 
