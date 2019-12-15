@@ -1,6 +1,7 @@
 package com.example.ddb.UI;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.ddb.Data.NotifyDataChange;
 import com.example.ddb.Data.Parcel_dataSource_Maneger.RegisteredPackagesDS;
 import com.example.ddb.Data.Users;
@@ -22,6 +27,7 @@ import com.example.ddb.Entities.Company;
 import com.example.ddb.Entities.Parcel;
 import com.example.ddb.R;
 import com.example.ddb.UI.AddParcelProcces.AddParcelMain;
+import com.example.ddb.Utils.TimedData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -39,6 +45,23 @@ public class MainScreenCompany extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen_company);
+
+        // add the image to the back
+        try {
+            String url = TimedData.getHourlyURLBack();
+            Glide.with(this)
+                    .asDrawable()
+                    .load(url)
+                    .fitCenter()
+                    .into(new SimpleTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            findViewById(R.id.back).setBackground(resource);
+                        }
+                    });
+        } catch (Exception e) {
+
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

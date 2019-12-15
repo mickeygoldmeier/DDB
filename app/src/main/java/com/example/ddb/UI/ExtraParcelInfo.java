@@ -34,7 +34,6 @@ import net.glxn.qrgen.android.QRCode;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -153,7 +152,7 @@ public class ExtraParcelInfo extends Fragment {
         // Print the QR code
         PrintHelper photoPrinter = new PrintHelper(getActivity());
         photoPrinter.setScaleMode(PrintHelper.SCALE_MODE_FIT);
-        Bitmap bitmap = QRCode.from(currentParcel.getParcelID()).bitmap();
+        Bitmap bitmap = QRCode.from(currentParcel.getParcelID()).withSize(200, 200).bitmap();
         photoPrinter.printBitmap("DDB " + currentParcel.getParcelID() + " QR code", bitmap);
     }
 
@@ -161,7 +160,7 @@ public class ExtraParcelInfo extends Fragment {
         // Share the QR code as image
         try {
             File file = new File(getContext().getCacheDir() + "/Image.png");
-            Bitmap bitmap = QRCode.from(currentParcel.getParcelID()).bitmap();
+            Bitmap bitmap = QRCode.from(currentParcel.getParcelID()).withSize(200, 200).bitmap();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(file));
             Uri uri = FileProvider.getUriForFile(getContext(), "com.example.ddb.fileprovider", file);
 

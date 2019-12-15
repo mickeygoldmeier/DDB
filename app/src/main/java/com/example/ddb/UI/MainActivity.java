@@ -24,8 +24,8 @@ import com.example.ddb.Data.User_dataSource_Maneger.UsersDS;
 import com.example.ddb.Data.Users;
 import com.example.ddb.Entities.User;
 import com.example.ddb.R;
+import com.example.ddb.Utils.TimedData;
 
-import java.util.Calendar;
 import java.util.List;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         // add the image to the back
         try {
-            String url = "https://images.unsplash.com/photo-1498036882173-b41c28a8ba34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=60";
+            String url = TimedData.getHourlyURLBack();
             Glide.with(this)
                     .asDrawable()
                     .load(url)
@@ -82,19 +82,9 @@ public class MainActivity extends AppCompatActivity {
         }
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-
         // set the welcome title
         TextView welcomeTV = findViewById(R.id.welcome_tv);
-        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if (hour >= 0 && hour < 5)
-            welcomeTV.setText(R.string.good_night);
-        else if (hour >= 5 && hour < 13)
-            welcomeTV.setText(R.string.good_morning);
-        else if (hour >= 13 && hour < 17)
-            welcomeTV.setText(R.string.good_afternoon);
-        else
-            welcomeTV.setText(R.string.good_evning);
-
+        welcomeTV.setText(TimedData.getHourlyBless());
 
         final EditText id_ed = findViewById(R.id.id_et);
         final TextView message_tv = findViewById(R.id.message_tv);

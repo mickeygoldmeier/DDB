@@ -23,6 +23,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.ddb.R;
 import com.example.ddb.Utils.SendEmail;
+import com.example.ddb.Utils.TimedData;
 
 public class SignUpScreen extends AppCompatActivity {
 
@@ -37,7 +38,7 @@ public class SignUpScreen extends AppCompatActivity {
 
         // add the image to the back
         try {
-            String url = "https://images.unsplash.com/photo-1498036882173-b41c28a8ba34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=60";
+            String url = TimedData.getHourlyURLBack();
             Glide.with(this)
                     .asDrawable()
                     .load(url)
@@ -45,7 +46,7 @@ public class SignUpScreen extends AppCompatActivity {
                     .into(new SimpleTarget<Drawable>() {
                         @Override
                         public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                            findViewById(R.id.main_activity_ll).setBackground(resource);
+                            findViewById(R.id.signup_ll).setBackground(resource);
                         }
                     });
         } catch (Exception e) {
