@@ -15,7 +15,7 @@ The app has the following permissions:
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 App data is stored on Google&apos;s Firebase platform:
-```json
+```javascript
 dependencies {
 	...
 	implementation 'com.google.firebase:firebase-storage:16.0.4'
