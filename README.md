@@ -1,6 +1,6 @@
 
 # DDB - Warehouse app
-Developed by Michael Goldmeier and Natan Manor
+**Developed by Michael Goldmeier and Natan Manor**
 
 ## Introduction
 This app allow to the warehouse to control and upload new parcels to the app database for future use by the private user.
@@ -15,7 +15,7 @@ The app has the following permissions:
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 App data is stored on Google&apos;s Firebase platform:
-```Json
+```json
 dependencies {
 	...
 	implementation 'com.google.firebase:firebase-storage:16.0.4'
