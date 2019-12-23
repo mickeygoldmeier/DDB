@@ -17,8 +17,10 @@ The app has the following permissions:
 App data is stored on Google&apos;s Firebase platform:
 ```Json
 dependencies {
+	...
 	implementation 'com.google.firebase:firebase-storage:16.0.4'
 	implementation 'com.google.firebase:firebase-auth:16.0.5'
+	...
 }
 ```
 <br>
