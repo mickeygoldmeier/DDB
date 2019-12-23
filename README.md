@@ -54,7 +54,7 @@ On this screen, the employee can view all parcels listed in the warehouse where 
 ### Parcel registration screen
 This screen is divided into 3 different fragments.
 In the first fragment, the employee must enter the customers phone number for which the package is addressed.
-It does not matter if the employee enters the number with a local prefix (05...) or with an international prefix (+97205...) because the app will convert the number to an international prefix anyway, but the phone number must be a correct number.
+It does not matter if the employee enters the number with a local prefix (05...) or with an international prefix (+9725...) because the app will convert the number to an international prefix anyway, but the phone number must be a correct number.
 ![Registration fragment 1](https://github.com/mickeygoldmeier/DDB/blob/master/screenshots/Registration%201.jpg?raw=true "Registration fragment 1")
 <br>In the second fragment, the warehouse worker must enter the following details on the parcel:
 - Enum type variable of one of the following options
