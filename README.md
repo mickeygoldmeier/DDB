@@ -5,7 +5,7 @@
 ## Introduction
 This app allow to the warehouse to control and upload new parcels to the app database for future use by the private user.
 The app supports English and Hebrew, depending on the phone language.
-To view the general UML diagram of the classes in the system, [click here](Android Project UML.pdf "UML diagram").
+To view the general UML diagram of the classes in the system, [click here](`Android Project UML.pdf` "UML diagram").
 The app has the following permissions:
 ```xml
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
