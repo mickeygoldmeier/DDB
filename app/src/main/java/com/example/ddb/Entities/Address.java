@@ -35,7 +35,7 @@ public class Address {
     }
 
     public void setCity(String city) throws Exception {
-        boolean flag = false;
+        /*boolean flag = false;
         if (CitiesList.getCitiesArray().length == 0) {
             for (String citie : CitiesList.getCitiesArray()) {
                 if (city == citie) {
@@ -45,7 +45,7 @@ public class Address {
             }
             if (!flag)
                 throw new Exception("the city dose not exist");
-        }
+        }*/
         City = city;
     }
     public String getStreet() {
